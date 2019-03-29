@@ -1,0 +1,59 @@
+﻿@model ALPPI.Models.Professor
+@{
+    Layout=null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title>Login - ALPPI</title>
+    <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
+</head>
+<body>
+    <table class="table table-hover" border="0">
+        <tr class="table-dark">
+            <td>ALPPI</td>
+            <td align="center"><h5><strong>LOGIN</strong></h5></td>
+            <td align="right">MRM</td>
+        </tr>
+    </table>
+    <br><br>
+    <center>
+        <img src="../Imagens/IFPR-LOGO2.png" />
+        <br><br><br><br>
+        @using(Html.BeginForm("LogarProfessor", "Conta", FormMethod.Post)) {
+            <fieldset>
+                @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+                <table border="0">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                @Html.ValidationMessageFor(Model => Model.eml_Professor, null, new { @class = "text-danger" })
+                                @Html.LabelFor(Model => Model.eml_Professor, new { @style = "center" })
+                                @Html.TextBoxFor(Model => Model.eml_Professor, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "email@example.com" })
+                                <center><small id="emailHelp" class="form-text text-muted">Seu email é totalmente seguro conosco!</small></center>
+                            </div>
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                @Html.ValidationMessageFor(Model => Model.senha_Professor, null, new { @class = "text-danger" })
+                                @Html.LabelFor(Model => Model.senha_Professor, new { @class = "center" })
+                                @Html.PasswordFor(Model => Model.senha_Professor, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Senha" })
+                                <center><small id="emailHelp" class="form-text text-muted">Digite sua senha!</small></center>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <button type="submit" class="btn btn-outline-success">Pronto</button>
+            </fieldset>
+            <footer class="fixed-bottom" style="text-align: right;"><center><hr><font color="#000">Todos os Direitos Reservados &copy;MRM Informatica</font></center></footer>
+        }
+    </center>
+</body>
+</html>

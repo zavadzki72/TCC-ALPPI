@@ -1,0 +1,60 @@
+body{
+    background-color: #f2f3f5;
+}
+.container.SOBRE{
+    max-width: 1359px;
+    margin-bottom: 32px;
+    margin-top: 64px;
+}
+.about__title{
+    font-weight: 900 !important;
+}
+.about__info{
+    background-color: #ffffff;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+}
+.text-primary{
+    font-size: 1.2em;
+    padding: 16px 32px;
+}
+.comments__container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+}
+.blockquote{
+    background-color: #00838F;
+    max-width: 780px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
+    border-radius: 4px;
+}
+.blockquote + .blockquote{
+    margin-left: 16px;
+}
+.blockquote-footer{
+    padding: 0px 16px 8px;
+    color: #e2e2e2;
+}
+.mb-0{
+    flex: auto;
+    padding: 8px 16px;
+    /* color: rgba(0,0,0,.65); */
+    color: #fff;
+}
+@media screen and (min-width:600px) and (max-width:959px) {
+    .comments__container{
+        flex-direction: column;
+    }
+    .blockquote + .blockquote{
+        margin-left: 0px;
+    }
+}
+@media screen and (max-width:599px) {
+    .comments__container{
+        flex-direction: column;
+    }
+    .blockquote + .blockquote{
+        margin-left: 0px;
+    }
+}

@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+    <div class="menu">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <img src="~/Imagens/IFPR.png" height="50" width="80" />
+            <a class="navbar-brand" href="#">&nbsp;&nbsp;&nbsp;&nbsp;ALPPI</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor05" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Materias", "Materias", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Professores", "Professores", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Sobre", "Sobre", "Home", null, new { @class = "nav-link" })
+                    </li>
+                    @if(User.Identity.Name.Equals("")) {
+                        <li class="nav-item">
+                            @Html.ActionLink("Entrar como Aluno", "LogarAluno", "Conta", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Entrar", "LogarProfessor", "Conta", null, new { @class = "nav-link" })
+                        </li>
+                    } else {
+                        <li class="nav-item">
+                            @Html.ActionLink("Sair", "Deslogar", "Conta", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Procurar">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Pronto</button>
+                </form>
+            </div>
+        </nav>
+    </div>
+    @RenderBody()
+    <footer class="fixed-bottom" style="text-align: right;"><center><hr><font color="#000">Todos os Direitos Reservados &copy;MRM Informatica</font></center></footer>
+</body>
+</html>

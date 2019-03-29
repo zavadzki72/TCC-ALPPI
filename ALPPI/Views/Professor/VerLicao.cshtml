@@ -1,0 +1,96 @@
+﻿@using ALPPI.Models
+@model Licao
+@{int cont = 0;
+    int cont2 = 0;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Pergunta> listaDePerguntas = ViewBag.listaDePerguntas;
+    Pergunta p = new Pergunta();
+}
+
+<head>
+    <meta charset="utf-8" />
+    <title>Status da Lição - ALPPI</title>
+    <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
+</head>
+<div class="LISTALICAO">
+    <div class="jumbotron">
+        @if(Model.flg_Ativo != 1) {
+            if(Model.Dta_Conclusao_Licao < DateTime.Now) {
+                Model.flg_Ativo = 1;
+            } else {
+                Model.flg_Ativo = 0;
+            }
+        }
+        <center><h2>status da lição: @Model.nme_Licao</h2></center><hr /><br>
+        <table class="table table-hover" style="box-shadow:1px 2px; margin-bottom: 50px; border:2px black; border-style: inset" border="0">
+            <tr class="table-primary">
+                <th style="color: white; background-color: black" scope="col">#</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">nome</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">turma</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">matéria</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">status</th>
+            </tr>
+            <tr class="table-secondary">
+                <td style="color: black">
+                    @{cont++;
+                    }@cont
+                </td>
+                <td style="color: black; text-align:center;">@Model.nme_Licao</td>
+                <td style="color: black; text-align:center;">@Model.turma.nme_Turma</td>
+                <td style="color: black; text-align:center;">@Model.materia.nme_Materia</td>
+                @if(Model.flg_Ativo==0) {
+                    <td class="text-danger" style="text-align:center;">não concluida</td>
+                } else {
+                    <td class="text-success" style="text-align:center;">concluida</td>
+                }
+            </tr>
+        </table>
+        <hr><br>
+        <center>
+            <table border="0" class="table table-hover" style="margin-bottom: 10px; box-shadow:1px 2px; border:2px black; border-style: inset; width: 50%;">
+                <tr class="table-primary">
+                    <th style="color: white; background-color: black" scope="col">#</th>
+                    <th style="color: white; text-align:center; background-color: black" scope="col">pergunta</th>
+                    <th style="color: white; text-align:center; background-color: black" scope="col">&nbsp;</th>
+                    <th style="color: white; text-align:center; background-color: black" scope="col" colspan="2">OPÇÕES</th>
+                </tr>
+                @foreach(Pergunta index in listaDePerguntas) {
+                    <tr class="table-secondary">
+                        <td style="color: black">
+                            @{cont2++;
+                            }@cont2
+                        </td>
+                        <td style="color: black; text-align:center;">@index.des_Pergunta</td>
+                        <td>&nbsp;</td>
+                        <td>@Html.ActionLink("Editar", "EditarPergunta/"+index.idPergunta, "Professor", null, null)</td>
+                        <td>@Html.ActionLink("Excluir", "ExluirPergunta", "Professor", new { id = index.idPergunta }, new { @class = "text-danger" })</td>
+                    </tr>
+                }
+            </table>
+        </center><hr>
+        @using(Html.BeginForm("InserirPerguntaLicao", "Professor", FormMethod.Post)) {
+            <center>
+                <table border="0" class="table table-hover" style="box-shadow:1px 2px; border:2px black; border-style: inset; width: 50%;">
+                    <tr>
+                        <td align="center">
+                            <div class="form-group">
+                                @Html.ValidationMessage("Pergunta.des_Pergunta", null, new { @class = "text-danger" })
+                                @Html.Label("Pergunta", new { @style = "color:Black;, align: center;" })
+                                @Html.TextArea("Pergunta.des_Pergunta", "", new { @class = "form-control", id = "exampleTextarea", @placeholder = "Sua Pergunta aqui", @rows = 3 });
+                            </div>
+                        </td>
+                        <td align="center">
+                            <div class="form-group">
+                                @Html.ValidationMessage("Pergunta.des_Resposta_Padrao_Pergunta", null, new { @class = "text-danger" })
+                                @Html.Label("Resposta Padrao", new { @style = "color:Black;, align: center;" })
+                                @Html.TextArea("Pergunta.des_Resposta_Padrao_Pergunta", "", new { @class = "form-control", id = "exampleTextarea", @placeholder = "Sua Resposta Padrao aqui", @rows = 3 });
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </center>
+            <br>
+            <center><button type="submit" class="btn btn-outline-success">Pronto</button></center>
+        }
+    </div>
+</div>

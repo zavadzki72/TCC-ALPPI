@@ -1,0 +1,37 @@
+﻿@model ALPPI.Models.Pergunta
+
+<head>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title>Cadastro de Perguntas - ALPPI</title>
+    <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
+</head>
+<div class="CADASTRAR PERGUNTA">
+@using(Html.BeginForm("CadastrarPergunta","Cadastro",FormMethod.Post)) {
+    if(ViewBag.Sucesso !=  null) {
+        if(ViewBag.Sucesso) {
+            <div class="text-success"><center><p>Pergunta Registrada em nossos sistemas</p></center><br></div>
+        }
+    }
+    <center><p>@Html.ValidationSummary(true,null,new { @class = "text-danger" })</p></center><br>
+    <div class="container">
+        <div class="cards__block">
+            <div class="form-group">
+                @Html.ValidationMessageFor(Model => Model.des_Pergunta,null,new { @class = "text-danger" })
+                @Html.LabelFor(Model => Model.des_Pergunta,new { @for = "exampleTextarea" })
+                @Html.TextAreaFor(Model => Model.des_Pergunta,new { @class = "form-control",id = "exampleTextarea",@placeholder = "Sua Pergunta aqui",@rows = 3 })
+            </div>
+        </div>
+        <div class="cards__block">
+            <div class="form-group">
+                @Html.ValidationMessageFor(Model => Model.des_Resposta_Padrao_Pergunta, null, new { @class = "text-danger" })
+                @Html.LabelFor(Model => Model.des_Resposta_Padrao_Pergunta, new { @for = "exampleTextarea" })
+                @Html.TextAreaFor(Model => Model.des_Resposta_Padrao_Pergunta, new { @class = "form-control", id = "exampleTextarea", @placeholder = "Resposta Padrao da pergunta aqui", @rows = 3 })
+             </div>
+        </div>
+    </div>
+    <br><br>
+    <center><button type="submit" class="btn btn-outline-success">Pronto</button></center>
+    <br><br><br><br><br><br>
+}
+</div>

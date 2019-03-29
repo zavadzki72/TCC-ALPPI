@@ -1,0 +1,38 @@
+﻿@using ALPPI.Models
+@model Resposta
+@{
+    Layout="~/Views/Shared/_Layout.cshtml";
+    int idResposta = ViewBag.idResposta;
+}
+
+<head>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title>Avaliar Resposta - ALPPI</title>
+    <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
+</head>
+<div class="CADASTRAR PERGUNTA">
+    @using(Html.BeginForm("addAvaliacao", "Professor", FormMethod.Post)) {
+        if(ViewBag.Sucesso!=null) {
+            if(ViewBag.Sucesso) {
+                <div class="text-success"><center><p>Avaliacao Adicionada em nossos sistemas</p></center><br></div>
+            }
+        }
+        <center><p>@Html.ValidationSummary(true, null, new { @class = "text-danger" })</p></center><br>
+        <div class="container">
+            <div class="cards__block">
+                @Html.Hidden("idResposta", idResposta, null)
+                <div class="form-group">
+                    @Html.ValidationMessageFor(Model => Model.nota, null, new { @class = "text-danger" })
+                    @Html.LabelFor(Model => Model.nota, new { @for = "exampleTextarea" })
+                    @Html.DropDownList("nota", new SelectList(new[]{ new {id="1", Name="1" }, new {id="2", Name="2" }, new {id="3", Name="3" }, new {id="4", Name="4" }, new {id="5", Name="5" }
+               , new {id="6", Name="6" }, new {id="7", Name="7" }, new {id="8", Name="8" }, new {id="9", Name="9" }, new {id="10", Name="10" }}, "id", "Name"), "--Selecione--", htmlAttributes: new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+        <br>
+        <center><button type="submit" class="btn btn-outline-success">Pronto</button></center>
+        <br><br><br><br><br><br>
+    }
+</div>
+

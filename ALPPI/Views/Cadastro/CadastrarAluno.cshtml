@@ -1,0 +1,101 @@
+﻿@model ALPPI.Models.Aluno
+
+@{
+    DateTime[] dias = new DateTime[] { DateTime.Today.Date,DateTime.Today.Date.AddDays(1),DateTime.Today.Date.AddDays(2),DateTime.Today.Date.AddDays(3),DateTime.Today.Date.AddDays(4),DateTime.Today.Date.AddDays(5),DateTime.Today.Date.AddDays(6) };
+}
+
+<link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="@Url.Content("~/Scripts/jquery-1.12.4.min.js")"></script>
+<script src="@Url.Content("~/Scripts/jquery-ui-1.12.1.min.js")"></script>
+<link href="~/Content/jquery-ui-timepicker-addon.min.css" rel="stylesheet" />
+<script src="~/Scripts/jquery-ui-timepicker-addon.min.js"></script>
+<script src="~/Scripts/datepicker-pt-BR.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $(function () {
+        $('.date-picker').datepicker({ dateFormat: 'dd/mm/yy'});
+    });
+</script>
+
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title>Registro de Alunos - ALPPI</title>
+    <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
+</head>
+<div class="REGISTRO">
+    @using (Html.BeginForm("CadastrarAluno", "Cadastro", FormMethod.Post)){
+        <br><br><br>
+        if(ViewBag.Sucesso !=  null) {
+            if(ViewBag.Sucesso) {
+            <div class="text-success"><center><p>Aluno Registrado em nossos sistemas</p></center><br></div>
+            }
+        }
+        <center><p>@Html.ValidationSummary(true,null,new { @class = "text-danger" })</p></center><br>
+        <div class="container">
+            <div class="cards__block">
+                <div class="form-group">
+                    @Html.ValidationMessageFor(Model => Model.nme_Aluno, null, new { @class = "text-danger" })
+                    @Html.LabelFor(Model => Model.nme_Aluno, new { @for = "exampleInputEmail1" })
+                    @Html.TextBoxFor(Model => Model.nme_Aluno, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Nome do Aluno" })
+                    <center><small id="emailHelp" class="form-text text-muted">Digite o nome do aluno</small></center>
+                </div>
+                <br>
+                <div class="form-group">
+                    @Html.ValidationMessageFor(Model => Model.dta_NascAluno, null, new { @class = "text-danger" })
+                    @Html.LabelFor(Model => Model.dta_NascAluno, new { @for = "exampleInputEmail1", id = "exampleInputEmail1" })
+                    @Html.TextBox("data", "", new { @class = "date-picker form-control" })
+                    <center><small id="emailHelp" class="form-text text-muted">Informe a Data de Nascimento do Aluno</small></center>
+                </div>
+            </div>
+            <br>
+            <div class="cards__block">
+                <div class="form-group">
+                    @Html.ValidationMessageFor(Model => Model.matricula_Aluno, null, new { @class = "text-danger" })
+                    @Html.LabelFor(Model => Model.matricula_Aluno, new { @for = "exampleInputEmail1" })
+                    @Html.TextBoxFor(Model => Model.matricula_Aluno, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Matricula do Aluno" })
+                    <center><small id="emailHelp" class="form-text text-muted">Digite a Matricula do aluno</small></center>
+                </div>
+                <br>
+                <div class="form-group">
+                    @Html.ValidationMessageFor(Model => Model.turma.idTurma, null, new { @class = "text-danger" })
+                    @Html.LabelFor(Model => Model.turma.idTurma, new { @for = "exampleInputEmail1" })
+                    @Html.DropDownList("idTurma", null, "--Selecione--", htmlAttributes: new { @class = "form-control" })
+                    <center><small id="emailHelp" class="form-text text-muted">Selecione a turma do Aluno</small></center>
+                </div>
+            </div>
+            <br>
+            <div class="cards__block">
+                <div class="form-group">
+                    <label for="exampleSelect1">Sexo</label>
+                    @Html.ValidationMessageFor(Model => Model.sexo.idSexo, null, new { @class = "text-danger" })
+                    @Html.LabelFor(Model => Model.sexo.idSexo, new { @for = "exampleInputEmail1" })
+                    @Html.DropDownList("idSexo", null, "--Selecione--", htmlAttributes: new { @class = "form-control" })
+                    <center><small id="emailHelp" class="form-text text-muted">Selecione o Sexo do Aluno</small></center>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="exampleSelect1">Cidade</label>
+                    @Html.ValidationMessageFor(Model => Model.cidade.idCidade, null, new { @class = "text-danger" })
+                    @Html.LabelFor(Model => Model.cidade.idCidade, new { @for = "exampleInputEmail1" })
+                    @Html.DropDownList("idCidade", null, "--Selecione--", htmlAttributes: new { @class = "form-control" })
+                    <center><small id="emailHelp" class="form-text text-muted">Selecione o Sexo do Aluno</small></center>
+                </div>
+            </div>
+            <br>
+            <div class="cards__block">
+                <div class="form-group">
+                    @Html.ValidationMessageFor(Model => Model.cpf_Aluno, null, new { @class = "text-danger" })
+                    @Html.LabelFor(Model => Model.cpf_Aluno, new { @for = "exampleInputEmail1" })
+                    @Html.TextBoxFor(Model => Model.cpf_Aluno, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "CPF do Aluno" })
+                    <center><small id="emailHelp" class="form-text text-muted">Digite o CPF do aluno</small></center>
+                </div>
+                <br>
+                <div class="form-group">
+                    <center><button type="submit" class="btn btn-outline-success">Pronto</button></center>
+                    <br><br><br><br><br><br><br><br>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,33 @@
+﻿@using ALPPI.Models
+@model List<Turma>
+@{int cont = 0;}
+
+<head>
+    <meta charset="utf-8" />
+    <title>Lista de Turmas - ALPPI</title>
+    <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
+</head>
+<div class="LISTALICAO">
+    <div class="jumbotron">
+        <center><h2>Lista de Turmas</h2></center><hr />
+        <table class="table table-hover" style="margin-bottom: 100px" border="0">
+            <tr class="table-primary">
+                <th style="color: white; background-color: black" scope="col">#</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Nome</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Ano</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">#</th>
+            </tr>
+            @foreach(Turma t in Model) {
+                <tr class="table-secondary">
+                    <td style="color: black">
+                        @{cont++;
+                    }@cont
+                </td>
+                <td style="color: black; text-align:center;">@t.nme_Turma</td>
+                <td style="color: black; text-align:center;">@t.ano_Turma</td>
+                <td style="color: black; text-align:center;">@Html.ActionLink("Alunos","ListaAluno","Professor",new { id = t.idTurma},null)</td>
+            </tr>
+             }
+        </table>
+    </div>
+</div>

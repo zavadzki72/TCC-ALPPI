@@ -1,0 +1,58 @@
+﻿@using ALPPI.Models
+@model List<Licao>
+@{int cont = 0;}
+
+<head>
+    <meta charset="utf-8" />
+    <title>Lista de Lições - ALPPI</title>
+    <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
+</head>
+<div class="LISTALICAO">
+    <div class="jumbotron">
+    <center><h2>Suas Lições</h2></center><hr />
+    <table class="table table-hover" style="margin-bottom: 100px" border="0">
+        <tr class="table-primary">
+            <th style="color: white; background-color: black" scope="col">#</th>
+            <th style="color: white; text-align:center; background-color: black" scope="col">Nome</th>
+            <th style="color: white; text-align:center; background-color: black" scope="col">Turma</th>
+            <th style="color: white; text-align:center; background-color: black" scope="col">Matéria</th>
+            <th style="color: white; text-align:center; background-color: black" scope="col">Status</th>
+            <th style="color: white; text-align:center; background-color: black" scope="col" colspan="5">OPÇÕES</th>
+        </tr>
+        @foreach(Licao l in Model) {
+            if(l.flg_Ativo != 1) {
+                if(l.Dta_Conclusao_Licao < DateTime.Now) {
+                    l.flg_Ativo = 1;
+                } else {
+                    l.flg_Ativo = 0;
+                }
+            }
+            <tr class="table-secondary">
+                <td style="color: black">@{cont++;
+                }@cont</td>
+                <td style="color: black; text-align:center;">@l.nme_Licao</td>
+                <td style="color: black; text-align:center;">@l.turma.nme_Turma</td>
+                <td style="color: black; text-align:center;">@l.materia.nme_Materia</td>
+                @if(l.flg_Ativo == 0){
+                   <td class="text-danger" style="text-align:center;">Não Concluida</td>
+                } else {
+                    <td class="text-success" style="text-align:center;">Concluida</td>
+                }
+                <td style="color: black; text-align:center;">@Html.ActionLink("Ver","VerLicao","Professor",new { id = l.idLicao },null)</td>
+                <td style="color: black; text-align:center;">@Html.ActionLink("Editar","EditarLicao","Professor",new { id = l.idLicao },null)</td>
+                <td style="color: black; text-align:center;">@Html.ActionLink("Corrigir Respostas", "CorrigirLicao", "Professor", new { id = l.idLicao }, null)</td>
+                @if(l.flg_Ativo  == 0) {
+                    <td style="color: black; text-align:center;">@Html.ActionLink("Concluir","ConcluirLicao","Professor",new { id = l.idLicao },new { @class = "text-success" })</td>
+                } else {
+                    if(l.Dta_Conclusao_Licao < DateTime.Now) {
+                        <td class="text-danger" style="text-align:center;">Data Limite Atingida!</td>
+                    } else {
+                        <td style="color: black; text-align:center;">@Html.ActionLink("Reativar","DesConcluirLicao","Professor",new { id = l.idLicao },null)</td>
+                    }
+                }
+                <td style="color: black; text-align:center;">@Html.ActionLink("Excluir","ExcluirLicao","Professor",new { id = l.idLicao },new { @class = "text-danger" })</td>
+         </tr>
+        }
+    </table>
+    </div>
+</div>

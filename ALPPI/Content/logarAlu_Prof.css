@@ -1,0 +1,42 @@
+.container-fluid{
+    background-color: #212121;
+}
+.form__block{
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+.form-group + .form-group{
+    margin-left: 1rem;
+}
+.img__ifpr{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.img__ifpr img{
+    margin: 32px;
+}
+.login__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-transform: uppercase;
+}
+.login__header h5{
+    font-size: 1.5em;
+    margin: 32px;
+    color: #fff;
+}
+.login__header h6{
+    font-size: 1.25em;
+    color: #e2e2e2;
+    margin: 32px;
+}
+.form-text{
+    text-align: center;
+}
+.button__login{
+    display: flex;
+    justify-content: flex-end;
+}

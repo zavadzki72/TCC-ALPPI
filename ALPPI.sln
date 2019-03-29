@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28711.60
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ALPPI", "ALPPI\ALPPI.csproj", "{17A21388-5274-494F-8EFC-79CEC8E732D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestesSintaxe", "TestesSintaxe\TestesSintaxe.csproj", "{87629E63-1C8A-4890-B1E5-E938BE2CF6DD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{17A21388-5274-494F-8EFC-79CEC8E732D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17A21388-5274-494F-8EFC-79CEC8E732D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17A21388-5274-494F-8EFC-79CEC8E732D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17A21388-5274-494F-8EFC-79CEC8E732D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87629E63-1C8A-4890-B1E5-E938BE2CF6DD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87629E63-1C8A-4890-B1E5-E938BE2CF6DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87629E63-1C8A-4890-B1E5-E938BE2CF6DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87629E63-1C8A-4890-B1E5-E938BE2CF6DD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CBD9A3CF-17FB-47B0-9FBF-4201853A1C21}
+	EndGlobalSection
+EndGlobal

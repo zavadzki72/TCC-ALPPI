@@ -1,0 +1,90 @@
+﻿@using ALPPI.Models
+@model Licao
+@{int cont = 0;
+    int cont2 = 0;
+    bool aux = false;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    List<Pergunta> listaDePerguntas = ViewBag.listaDePerguntas;
+    Pergunta p = new Pergunta();
+    List<Resposta> listaDeRespostas = ViewBag.listaDeRespostas;
+    Resposta r = new Resposta();
+}
+
+<head>
+    <meta charset="utf-8" />
+    <title>Lição - ALPPI</title>
+    <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
+</head>
+<div class="LISTALICAO">
+    <div class="jumbotron">
+        @if(Model.Dta_Conclusao_Licao < DateTime.Now) {
+            Model.flg_Ativo = 1;
+        } else {
+            Model.flg_Ativo = 0;
+        }
+        <center><h2>Lição: @Model.nme_Licao</h2></center><hr /><br>
+        <table class="table table-hover" style="box-shadow:1px 2px; margin-bottom: 50px; border:2px black; border-style: inset" border="0">
+            <tr class="table-primary">
+                <th style="color: white; background-color: black" scope="col">#</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Nome</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Professor</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Matéria</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Status</th>
+            </tr>
+            <tr class="table-secondary">
+                <td style="color: black">
+                    @{cont++;
+                    }@cont
+                </td>
+                <td style="color: black; text-align:center;">@Model.nme_Licao</td>
+                <td style="color: black; text-align:center;">@Model.professor.nme_Professor</td>
+                <td style="color: black; text-align:center;">@Model.materia.nme_Materia</td>
+                @if(Model.flg_Ativo == 0) {
+                    <td class="text-danger" style="text-align:center;">não concluida</td>
+                } else {
+                    <td class="text-success" style="text-align:center;">concluida</td>
+                }
+            </tr>
+        </table>
+        <hr><br>
+        <center>
+            <table border="0" class="table table-hover" style="margin-bottom: 10px; box-shadow:1px 2px; border:2px black; border-style: inset; width: 50%;">
+                <tr class="table-primary">
+                    <th style="color: white; background-color: black" scope="col">#</th>
+                    <th style="color: white; text-align:center; background-color: black" scope="col">pergunta</th>
+                    <th style="color: white; text-align:center; background-color: black" scope="col">Resposta</th>
+                    <th style="color: white; text-align:center; background-color: black" scope="col">Alterar/Adicionar</th>
+                </tr>
+                @foreach (Pergunta index in listaDePerguntas) {
+            <tr class="table-secondary">
+                <td style="color: black; vertical-align:middle;">
+                    @{cont2++;
+                    }@cont2
+                    @{aux=false;}
+                </td>
+                <td style="color: black; vertical-align:middle; text-align:center;">@index.des_Pergunta</td>
+                @if(listaDeRespostas!=null) {
+                    foreach(Resposta raux in listaDeRespostas) {
+                        if(raux.pergunta.idPergunta==index.idPergunta) {
+                            r=raux;
+                            <td style="color: black; vertical-align:middle; text-align:center;">@raux.des_Resposta</td>
+                            <td style="vertical-align:middle;">
+                                <center> @Html.ActionLink("Editar", "EditarResposta", "Aluno", new { idPergunta = index.idPergunta, idResposta = r.idResposta }, null) </center>
+                            </td>
+                            aux=true;
+                        }
+                    }
+                    if(!aux) {
+                        <td style="color: black; vertical-align:middle; text-align:center;">---</td>
+                        <td style="vertical-align:middle;">
+                            <center> @Html.ActionLink("Adicionar", "ResponderPergunta", "Aluno", new { idPergunta = index.idPergunta }, null) </center>
+                        </td>
+                    }
+                }
+            </tr>
+                }
+            </table>
+        </center><hr>
+            <br>
+    </div>
+</div>

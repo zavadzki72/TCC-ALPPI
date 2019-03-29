@@ -1,0 +1,39 @@
+﻿@using ALPPI.Models
+@model Resposta
+
+@{ 
+    int idPergunta = ViewBag.idPergunta;
+}
+
+<head>
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title>Responder Pergunta - ALPPI</title>
+    <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
+</head>
+<div class="CADASTRAR PERGUNTA">
+    @using (Html.BeginForm("ResponderPergunta", "Aluno", FormMethod.Post))
+    {
+        if (ViewBag.Sucesso != null)
+        {
+            if (ViewBag.Sucesso)
+            {
+                <div class="text-success"><center><p>Resposta Adicionada em nossos sistemas</p></center><br></div>
+            }
+        }
+        <center><p>@Html.ValidationSummary(true, null, new { @class = "text-danger" })</p></center><br>
+        <div class="container">
+            <div class="cards__block">      
+                @Html.Hidden("idPergunta",idPergunta,null)
+                <div class="form-group">
+                    @Html.ValidationMessageFor(Model => Model.des_Resposta, null, new { @class = "text-danger" })
+                    @Html.LabelFor(Model => Model.des_Resposta, new { @for = "exampleTextarea" })
+                    @Html.TextAreaFor(Model => Model.des_Resposta, new { @class = "form-control", id = "exampleTextarea", @placeholder = "Sua Resposta aqui", @rows = 3 })
+                </div>
+            </div>
+        </div>
+        <br>
+        <center><button type="submit" class="btn btn-outline-success">Pronto</button></center>
+        <br><br><br><br><br><br>
+    }
+</div>

@@ -1,0 +1,127 @@
+﻿@{
+    Layout="~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title>Home - ALPPI</title>
+    <link href="~/Content/index.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
+</head>
+@if(!User.Identity.Name.Contains("@")&&!User.Identity.Name.Equals("")) {
+    <div class="container">
+        <div class="cards__block">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">minhas lições</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">tarefas</h6>
+                    <p class="card-text">veja as lições pendentes para você</p>
+                    @Html.ActionLink("Verificar", "LicaoPendente", "Aluno", null, new { @class = "card-link" })
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">histórico</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">historico de lições</h6>
+                    <p class="card-text">veja aqui o historico de lições e suas respectivas notas, nas lições ja feitas por você</p>
+                    <a href="#" class="card-link">vericar</a>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">horario</h4>
+                    <h6 class="card-subtitle mb-2 text-muted">horario das aulas</h6>
+                    <p class="card-text">veja aqui o horario das aulas da sua turma</p>
+                    <a href="#" class="card-link">vericar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if(User.Identity.Name.Contains("@ADM")){
+<div class="container">
+    <center><h2>Bem vindo</h2><h3 style="color:seagreen"> @System.Web.HttpContext.Current.User.Identity.Name.Split('|')[2] </h3></center>
+    <div class="cards__block">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">--</h4>
+                <h6 class="card-subtitle mb-2 text-muted">--</h6>
+                <p class="card-text">--</p>
+                @Html.ActionLink("--", "", "", null, new { @class = "card-link", @style = "right: 0;" })
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">--</h4>
+                <h6 class="card-subtitle mb-2 text-muted">--</h6>
+                <p class="card-text">--</p>
+                @Html.ActionLink("--", "", "", null, new { @class = "card-link", @style = "right: 0;" })
+            </div>
+        </div>
+    </div>
+</div>
+}
+@if(User.Identity.Name.Contains("@") && !User.Identity.Name.Contains("ADM")) {
+    <div class="container">
+        <center><h2>Bem vindo</h2><h3 style="color:seagreen"> @System.Web.HttpContext.Current.User.Identity.Name.Split('|')[2] </h3></center>
+        <div class="cards__block">
+            <div class="card">
+                <div class="card-body">
+                    <center>
+                        <h4 class="card-title">minhas lições</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">tarefas</h6>
+                        <p class="card-text">veja as lições que você já criou</p>
+                    </center>
+                    @Html.ActionLink("Verificar >>", "ListaLicao", "Professor", null, new { @class = "card-link", @style = "right: 0;" })
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <center>
+                        <h4 class="card-title">Alunos</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">Cadastro de ALunos</h6>
+                        <p class="card-text">Cadastre um Aluno por aqui</p>
+                        @Html.ActionLink("Cadastrar >>", "CadastrarAluno", "Cadastro", null, new { @class = "card-link", @style = "right: 0;" })
+                    </center>
+                </div>
+            </div>
+        </div>
+        <div class="cards__block">
+            <div class="card">
+                <div class="card-body">
+                    <center>
+                        <h4 class="card-title">nova lição</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">crie uma nova lição</h6>
+                        <p class="card-text">crie uma nova lição a partir desse link</p>
+                        @Html.ActionLink("Criar >>", "CadastrarLicao", "Cadastro", null, new { @class = "card-link", @style = "right: 0;" })
+                    </center>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <center>
+                        <h4 class="card-title">turmas</h4>
+                        <h6 class="card-subtitle mb-2 text-muted">lista de turmas</h6>
+                        <p class="card-text">veirifique aqui as turmas disponiveis para você</p>
+                        @Html.ActionLink("Verificar >>", "ListaTurma", "Professor", null, new { @class = "card-link",@style = "right: 0;"  })
+                    </center>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@if(User.Identity.Name.Equals("")) {
+    <div class="container">
+        <div class="error__message">
+            <img class="img__error" src="~/Imagens/Livros.jpg" height="200" width="600" />
+            <div class="alert alert-dismissible alert-warning">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <center><h4 class="alert-heading">ALERTA!</h4></center>
+                <p class="mb-0">Você não está Logado no sistema pedimos que porfavor se Logue como <a href="~/Conta/LogarProfessor" class="alert-link">PROFESSOR</a> ou como <a href="~/Conta/LogarAluno" class="alert-link">ALUNO</a> para conseguir ter acesso aos métodos desejados.</p>
+            </div>
+        </div>
+    </div>
+}
+
+

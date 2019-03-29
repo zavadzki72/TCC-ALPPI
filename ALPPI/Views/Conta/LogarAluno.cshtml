@@ -1,0 +1,57 @@
+﻿@model ALPPI.Models.Aluno
+@{
+    Layout=null;
+}
+<html>
+<head>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <meta charset="utf-8" />
+    <title>Login - ALPPI</title>
+    <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
+</head>
+<body>
+    <table class="table table-hover" border="0">
+        <tr class="table-dark">
+            <td>ALPPI</td>
+            <td align="center"><h5><strong>ALUNOS</strong></h5></td>
+            <td align="right">MRM</td>
+        </tr>
+    </table>
+    <br><br>
+    <center>
+        <img src="../Imagens/IFPR-LOGO2.png" />
+        <br><br><br><br>
+        @using(Html.BeginForm("LogarAluno", "Conta", FormMethod.Post)) {
+            <fieldset>
+                @Html.ValidationSummary(true, null, new { @class = "text-danger" })
+                <table border="0">
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                @Html.ValidationMessageFor(Model => Model.nme_Aluno, null, new { @class = "text-danger" })
+                                @Html.LabelFor(Model => Model.nme_Aluno, new { @style = "center" })
+                                @Html.TextBoxFor(Model => Model.nme_Aluno, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Seu Nome" })
+                                <center><small id="emailHelp" class="form-text text-muted">Digite o nome cadastrado pelo seu professor</small></center>
+                            </div>
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                @Html.ValidationMessageFor(Model => Model.matricula_Aluno, null, new { @class = "text-danger" })
+                                @Html.LabelFor(Model => Model.matricula_Aluno, new { @class = "center" })
+                                @Html.TextBoxFor(Model => Model.matricula_Aluno, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Sua Matricula" })
+                                <center><small id="emailHelp" class="form-text text-muted">Digite sua Matricula</small></center>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br>
+                <button type="submit" class="btn btn-outline-success">Pronto</button>
+            </fieldset>
+            <footer class="fixed-bottom" style="text-align: right;"><center><hr><font color="#000">Todos os Direitos Reservados &copy;MRM Informatica</font></center></footer>
+        }
+    </center>
+</body>
+</html>

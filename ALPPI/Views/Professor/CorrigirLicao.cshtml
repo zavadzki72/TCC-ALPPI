@@ -1,0 +1,54 @@
+﻿@using ALPPI.Models
+@model List<Resposta>
+@{int cont = 0; String nmeAluno = "";}
+@{
+    Layout="~/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+    <meta charset="utf-8" />
+    <title>Avaliar Respostas - ALPPI</title>
+    <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
+</head>
+<div class="LISTALICAO">
+    <div class="jumbotron">
+        <center><h2>Respostas da Lição: @Model[0].pergunta.licao.nme_Licao</h2></center><hr />
+        <table class="table table-hover" style="margin-bottom: 100px" border="1">
+            <tr class="table-primary">
+                <th style="color: white; background-color: black" scope="col">#</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Resposta</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Resposta Padrao</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Nome do Aluno</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Nota</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Opções</th>
+            </tr>
+            @foreach(Resposta r in Model) {
+        <tr class="table-secondary">
+            <td style="color: black">
+                @{cont++;
+                }@cont
+            </td>
+            <td style="color: black; text-align:center;">@r.des_Resposta</td>
+            <td style="color: black; text-align:center;">@r.pergunta.des_Resposta_Padrao_Pergunta</td>
+            @if(!r.aluno.nme_Aluno.Equals(nmeAluno)) {
+                <td style="color: black; text-align:center;">@r.aluno.nme_Aluno</td>
+                nmeAluno=r.aluno.nme_Aluno;
+            } else {
+                <td style="color: black; text-align:center;">||</td>
+            }
+            @if(r.nota!=0) {
+                <td style="color: black; text-align:center;">@r.nota</td>
+            } else {
+                <td style="color: black; text-align:center;">---</td>
+            }
+            @if(r.nota!=0) {
+                <td style="color: black; text-align:center;">@Html.ActionLink("Editar", "AddAvaliacao", "Professor", new { idResposta = r.idResposta }, null)</td>
+            } else {
+                <td style="color: black; text-align:center;">@Html.ActionLink("Adicionar", "AddAvaliacao", "Professor", new { idResposta = r.idResposta }, null)</td>
+            }
+        </tr>
+            }
+        </table>
+    </div>
+</div>
+

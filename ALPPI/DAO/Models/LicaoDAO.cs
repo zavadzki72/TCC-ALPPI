@@ -14,6 +14,11 @@ namespace ALPPI.DAO.Models {
                 Include(c => c.conceito).Include(c => c.materia).Include(c => c.turma).Include(c => c.professor).ToList();
         }
 
+
+        public static List<Licao> listLicaoNotId() {
+            return ctx.licoes.Include(c => c.conceito).Include(c => c.materia).Include(c => c.turma).Include(c => c.professor).ToList();
+        }
+
         public static List<Licao> listLicaoTurma(int idTurma) {
             return ctx.licoes.Where(x => x.turma.idTurma == idTurma && x.flg_Ativo == 0).OrderByDescending(x => x.dta_Inicio_Licao).
                 Include(c => c.conceito).Include(c => c.materia).Include(c => c.turma).Include(c => c.professor).ToList();

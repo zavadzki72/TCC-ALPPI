@@ -1,7 +1,8 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-
+    <link href="~/Content/footer.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
 </head>
@@ -48,6 +49,40 @@
         </nav>
     </div>
     @RenderBody()
-    <footer class="fixed-bottom" style="text-align: right;"><center><hr><font color="#000">Todos os Direitos Reservados &copy;MRM Informatica</font></center></footer>
+    <footer class="footer__container">
+        <div class="footer__logo__container">
+            <div class="footer__logo">
+                @*<a href="#"><img src="~/Imagens/Logo.png" alt="?" style="width:200px;height:100px;" /></a>*@
+                <p style="font-size:2em;">MRM</p>
+                <p style="font-size:1.5em;">Desenvolvimento de Softwares</p>
+            </div>
+        </div>
+        <div class="footer__container__columns">
+            <div class="footer__column">
+                <br>
+                <h6 class="footer__column__title">Redes Sociais</h6>
+                <nav class="footer__nav__links">
+                    <center>
+                        <a href="#">Facebook</a><br>
+                        <a href="#">Twitter</a><br>
+                        <a href="#">Instagram</a><br>
+                        <a href="#">LinkedIn</a><br>
+                    </center>
+                </nav>
+            </div>
+            <div class="footer__column">
+                <br>
+                <h6 class="footer__column__title">Fale Conosco</h6>
+                <div class="footer__nav__links">
+                    Contrate@MRM.com<br />
+                    (41)97070-7070
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    <footer class="footer__copyright">
+        <a href="#">MRM Softwares&copy</a>
+    </footer>
 </body>
 </html>

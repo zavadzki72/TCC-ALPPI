@@ -15,6 +15,13 @@ namespace ALPPI.Controllers {
         }
         #endregion
 
+        #region Lista de Lições
+        public ActionResult ListaLicoes() {
+            int idALuno = Convert.ToInt16(System.Web.HttpContext.Current.User.Identity.Name.Split('|')[3]);
+            return View(LicaoDAO.listLicaoNotId());
+        }
+        #endregion
+
         public ActionResult EditarResposta(int idPergunta, int idResposta) {
             ViewBag.idPergunta=idPergunta;
             ViewBag.idResposta=idResposta;

@@ -1,0 +1,66 @@
+﻿@using ALPPI.Models
+@model List<Licao>
+@{
+    List<Pergunta> lper = new List<Pergunta>();
+    int cont = 0;
+    List<Resposta> lRes = new List<Resposta>();
+    int idAluno = ViewBag.idAluno;
+    int notaTotal = 0;
+ }
+
+<head>
+    <meta charset="utf-8" />
+    <title>Lista de Lições - ALPPI</title>
+    <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
+</head>
+<div class="LISTALICAO">
+    <div class="jumbotron">
+        <center><h2>Suas Lições</h2></center><hr />
+        <table class="table table-hover" style="margin-bottom: 100px" border="0">
+            <tr class="table-primary">
+                <th style="color: white; background-color: black" scope="col">#</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Nome</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Nota</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Matéria</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Status</th>
+            </tr>
+            <tr class="table-secondary">
+                @foreach(Licao l in Model) {
+                    if(l.flg_Ativo!=1) {
+                        if(l.Dta_Conclusao_Licao<DateTime.Now) {
+                            l.flg_Ativo=1;
+                        } else {
+                            l.flg_Ativo=0;
+                        }
+                    }
+                    <td style="color: black">
+                        @{cont++;
+                        }@cont
+                    </td>
+                    <td style="color: black; text-align:center;">@l.nme_Licao</td>
+
+                    lper=l.perguntas.ToList();
+                    foreach(Pergunta pIndex in lper) {
+                        lRes=pIndex.respostas.ToList();
+                        foreach(Resposta rIndex in lRes) {
+                            if(rIndex.aluno.idAluno==idAluno) {
+                                notaTotal=notaTotal+rIndex.nota;
+                            }
+                        }
+                    }
+                    if(notaTotal<6) {
+                        <td style="color: black; text-align:center;">D</td>
+                    } else if(notaTotal>=6&&notaTotal<8) {
+                        <td style="color: black; text-align:center;">C</td>
+                    } else if(notaTotal==10) {
+                        <td style="color: black; text-align:center;">A</td>
+                    } else {
+                        <td style="color: black; text-align:center;">B</td>
+                    }
+                    <td style="color: black; text-align:center;">@l.materia.nme_Materia</td>
+                }
+            </tr>
+        </table>
+    </div>
+</div>
+

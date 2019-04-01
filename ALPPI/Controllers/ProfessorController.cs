@@ -13,6 +13,15 @@ namespace ALPPI.Controllers {
         }
         #endregion
 
+        #region Ver Notas
+        public ActionResult verNotasLicao(int id) {
+            TempData["idLicao22"]=id;
+            Licao l = LicaoDAO.buscarLicaoID(id);
+            ViewBag.momeLicao = l.nme_Licao;
+            return View(AlunoDAO.listarAlunos(l.turma.idTurma));
+        }
+        #endregion
+
         #region Lista de Lições
         public ActionResult ListaLicao() {
             long CPF = Convert.ToInt32(System.Web.HttpContext.Current.User.Identity.Name.Split('|')[1]);

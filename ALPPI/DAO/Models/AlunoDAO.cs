@@ -11,11 +11,8 @@ namespace ALPPI.DAO.Models {
         private static Contexto ctx = Singleton.GetInstance();
 
         #region Listar Alunos
-        public static List<Aluno> listarAlunos(int idTurma = 1) {
-            if(idTurma==1) {
-                return ctx.alunos.ToList();
-            }
-            return ctx.alunos.Where(x => x.turma.idTurma == idTurma).ToList();
+        public static List<Aluno> listarAlunos(int idTurma) {
+            return ctx.alunos.Where(x => x.turma.idTurma == idTurma).Include(x => x.turma).Include(x => x.sexo).Include(x => x.cidade).ToList();
         }
         #endregion
 

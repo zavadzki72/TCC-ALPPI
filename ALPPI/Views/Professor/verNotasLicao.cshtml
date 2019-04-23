@@ -1,10 +1,12 @@
 ﻿@using ALPPI.Models
+@using ALPPI.DAO.Models;
 @model List<Aluno>
 @{
     int cont = 0;
     int cont2 = 0;
     int notaTotal = 0;
     String nmeLicao = ViewBag.momeLicao;
+    int idLicao = ViewBag.idLicao;
 }
 @{
     Layout="~/Views/Shared/_Layout.cshtml";
@@ -20,21 +22,23 @@
         <center><h2>Avaliações da Lição: @nmeLicao</h2></center><hr />
         <table class="table table-hover" style="margin-bottom: 100px" border="1">
             <tr class="table-primary">
-                <th style="color: white; background-color: black" scope="col">#</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">#</th>
                 <th style="color: white; text-align:center; background-color: black" scope="col">Aluno</th>
                 <th style="color: white; text-align:center; background-color: black" scope="col">Nota (Numerica)</th>
                 <th style="color: white; text-align:center; background-color: black" scope="col">Conceito</th>
             </tr>
-            <tr class="table-secondary">
-                @foreach(Aluno a in Model) {
-                    cont2++;
+            @foreach(Aluno a in Model) {
+                <tr class="table-secondary">
+                    @{cont2++;}
                     <td style="color: black; text-align:center;">@cont2</td>
                     <td style="color: black; text-align:center;">@a.nme_Aluno</td>
-                    foreach(Resposta r in Model[cont].respostas) {
-                        notaTotal=r.nota+notaTotal;
+                    @foreach(Resposta r in Model[cont].respostas) {
+                        if(RespostaDAO.buscaidLicaoporResposta(r) == idLicao) {
+                            notaTotal=r.nota+notaTotal;
+                        }
                     }
                     <td style="color: black; text-align:center;">@notaTotal</td>
-                    if(notaTotal<6) {
+                    @if(notaTotal<6) {
                         <td style="color: black; text-align:center;">D</td>
                     } else if(notaTotal>=6&&notaTotal<8) {
                         <td style="color: black; text-align:center;">C</td>
@@ -43,9 +47,12 @@
                     } else {
                         <td style="color: black; text-align:center;">B</td>
                     }
-                    cont++;
-                }
-            </tr>
+                    @{
+                      cont++;
+                      notaTotal=0;
+                    }
+                </tr>
+             }
         </table>
     </div>
 </div>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ALPPI.Models {
@@ -12,6 +13,9 @@ namespace ALPPI.Models {
         public string des_Resposta { get; set; }
 
         public int nota { get; set; }
+
+        [DefaultValue(false)]
+        public bool isEnviado { get; set; }
 
         #region Foreing Key
         public Aluno aluno { get; set; }

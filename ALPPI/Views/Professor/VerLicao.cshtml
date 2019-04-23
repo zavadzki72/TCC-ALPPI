@@ -46,29 +46,35 @@
             </tr>
         </table>
         <hr><br>
-        <center>
-            <table border="0" class="table table-hover" style="margin-bottom: 10px; box-shadow:1px 2px; border:2px black; border-style: inset; width: 50%;">
-                <tr class="table-primary">
-                    <th style="color: white; background-color: black" scope="col">#</th>
-                    <th style="color: white; text-align:center; background-color: black" scope="col">pergunta</th>
-                    <th style="color: white; text-align:center; background-color: black" scope="col">&nbsp;</th>
-                    <th style="color: white; text-align:center; background-color: black" scope="col" colspan="2">OPÇÕES</th>
-                </tr>
-                @foreach(Pergunta index in listaDePerguntas) {
-                    <tr class="table-secondary">
-                        <td style="color: black">
-                            @{cont2++;
-                            }@cont2
-                        </td>
-                        <td style="color: black; text-align:center;">@index.des_Pergunta</td>
-                        <td>&nbsp;</td>
+            <center>
+                <table border="0" class="table table-hover" style="margin-bottom: 10px; box-shadow:1px 2px; border:2px black; border-style: inset; width: 50%;">
+                    <tr class="table-primary">
+                        <th style="color: white; background-color: black" scope="col">#</th>
+                        <th style="color: white; text-align:center; background-color: black" scope="col">pergunta</th>
+                        <th style="color: white; text-align:center; background-color: black" scope="col">&nbsp;</th>
+                        <th style="color: white; text-align:center; background-color: black" scope="col" colspan="2">OPÇÕES</th>
+                    </tr>
+                    @foreach(Pergunta index in listaDePerguntas) {
+                <tr class="table-secondary">
+                    <td style="color: black">
+                        @{cont2++;
+                        }@cont2
+                    </td>
+                    <td style="color: black; text-align:center;">@index.des_Pergunta</td>
+                    <td>&nbsp;</td>
+                    @if(Model.flg_Ativo==0) {
                         <td>@Html.ActionLink("Editar", "EditarPergunta/"+index.idPergunta, "Professor", null, null)</td>
                         <td>@Html.ActionLink("Excluir", "ExluirPergunta", "Professor", new { id = index.idPergunta }, new { @class = "text-danger" })</td>
-                    </tr>
-                }
-            </table>
-        </center><hr>
-        @using(Html.BeginForm("InserirPerguntaLicao", "Professor", FormMethod.Post)) {
+                    } else {
+                        <td colspan="2" style="text-align: center;color: black;">---</td>
+                    }
+                </tr>
+                    }
+                </table>
+            </center>
+        @if(Model.flg_Ativo==0) {
+           <hr>
+            using(Html.BeginForm("InserirPerguntaLicao", "Professor", FormMethod.Post)) {
             <center>
                 <table border="0" class="table table-hover" style="box-shadow:1px 2px; border:2px black; border-style: inset; width: 50%;">
                     <tr>
@@ -91,6 +97,7 @@
             </center>
             <br>
             <center><button type="submit" class="btn btn-outline-success">Pronto</button></center>
+            }
         }
     </div>
 </div>

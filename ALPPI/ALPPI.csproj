@@ -178,6 +178,10 @@
     <Compile Include="Migrations\201903281702204_attBanco.Designer.cs">
       <DependentUpon>201903281702204_attBanco.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904231756480_statusResp.cs" />
+    <Compile Include="Migrations\201904231756480_statusResp.Designer.cs">
+      <DependentUpon>201904231756480_statusResp.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrador.cs" />
     <Compile Include="Models\Aluno.cs" />
@@ -318,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903281702204_attBanco.resx">
       <DependentUpon>201903281702204_attBanco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904231756480_statusResp.resx">
+      <DependentUpon>201904231756480_statusResp.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

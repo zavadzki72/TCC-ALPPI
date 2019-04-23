@@ -24,9 +24,9 @@
                 <th style="color: white; text-align:center; background-color: black" scope="col">Matéria</th>
                 <th style="color: white; text-align:center; background-color: black" scope="col">Status</th>
             </tr>
-            <tr class="table-secondary">
-                @foreach(Licao l in Model) {
-                    if(l.flg_Ativo!=1) {
+            @foreach(Licao l in Model) {
+                <tr class="table-secondary">
+                    @if(l.flg_Ativo!=1) {
                         if(l.Dta_Conclusao_Licao<DateTime.Now) {
                             l.flg_Ativo=1;
                         } else {
@@ -39,8 +39,8 @@
                     </td>
                     <td style="color: black; text-align:center;">@l.nme_Licao</td>
 
-                    lper=l.perguntas.ToList();
-                    foreach(Pergunta pIndex in lper) {
+                    @{lper=l.perguntas.ToList();}
+                    @foreach(Pergunta pIndex in lper) {
                         lRes=pIndex.respostas.ToList();
                         foreach(Resposta rIndex in lRes) {
                             if(rIndex.aluno.idAluno==idAluno) {
@@ -48,7 +48,9 @@
                             }
                         }
                     }
-                    if(notaTotal<6) {
+                    @if(notaTotal == 0) {
+                        <td style="color: black; text-align:center;">Sem Nota</td>
+                    }else if(notaTotal<6) {
                         <td style="color: black; text-align:center;">D</td>
                     } else if(notaTotal>=6&&notaTotal<8) {
                         <td style="color: black; text-align:center;">C</td>
@@ -58,8 +60,13 @@
                         <td style="color: black; text-align:center;">B</td>
                     }
                     <td style="color: black; text-align:center;">@l.materia.nme_Materia</td>
+                    @if(l.flg_Ativo == 0) {
+                        <td class="text-danger" style="text-align:center;">Não Concluida</td>
+                    } else {
+                        <td class="text-success" style="text-align:center;">Concluida</td>
+                    }
+                    </tr>
                 }
-            </tr>
         </table>
     </div>
 </div>

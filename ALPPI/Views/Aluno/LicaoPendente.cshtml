@@ -10,6 +10,11 @@
 <div class="LISTALICAO">
     <div class="jumbotron">
         <center><h2>Lições Pendentes</h2></center><hr />
+        @if(TempData["Sucesso"]!=null) {
+            if(Convert.ToBoolean(TempData["Sucesso"]) == true) {
+                <div class="text-success"><center><p>Respostas enviadas ao professor!</p></center><br></div>
+            }
+        }
         <table class="table table-hover" style="margin-bottom: 100px" border="0">
             <tr class="table-primary">
                 <th style="color: white; background-color: black" scope="col">#</th>
@@ -20,32 +25,32 @@
                 <th style="color: white; text-align:center; background-color: black" scope="col" colspan="2">OPÇÕES</th>
             </tr>
             @foreach(Licao l in Model) {
-                if(l.flg_Ativo != 1) {
-                    if(l.Dta_Conclusao_Licao < DateTime.Now) {
-                        l.flg_Ativo = 1;
+                if(l.flg_Ativo!=1) {
+                    if(l.Dta_Conclusao_Licao<DateTime.Now) {
+                        l.flg_Ativo=1;
                     } else {
-                        l.flg_Ativo = 0;
+                        l.flg_Ativo=0;
                     }
                 }
                 <tr class="table-secondary">
                     <td style="color: black">
                         @{cont++;
-                    }@cont
-                </td>
-                <td style="color: black; text-align:center;">@l.nme_Licao</td>
-                <td style="color: black; text-align:center;">@l.professor.nme_Professor</td>
-                <td style="color: black; text-align:center;">@l.materia.nme_Materia</td>
-                @if(l.flg_Ativo == 0) {
-                    <td class="text-danger" style="text-align:center;">Não Concluida</td>
-                } else {
-                    <td class="text-success" style="text-align:center;">Concluida</td>
-                }
-                <td style="color: black; text-align:center;">@Html.ActionLink("Ver","VerLicaoAluno","Aluno",new { id = l.idLicao },null)</td>
-                    @if(l.flg_Ativo == 0) {
-                    <td style="color: black; text-align:center;">@Html.ActionLink("Enviar","EnviarLicao","Aluno",new { id = l.idLicao },new { @class = "text-success" })</td>
-                }
-            </tr>
-             }
+                        }@cont
+                    </td>
+                    <td style="color: black; text-align:center;">@l.nme_Licao</td>
+                    <td style="color: black; text-align:center;">@l.professor.nme_Professor</td>
+                    <td style="color: black; text-align:center;">@l.materia.nme_Materia</td>
+                    @if(l.flg_Ativo==0) {
+                        <td class="text-danger" style="text-align:center;">Não Concluida</td>
+                    } else {
+                        <td class="text-success" style="text-align:center;">Concluida</td>
+                    }
+                    <td style="color: black; text-align:center;">@Html.ActionLink("Ver", "VerLicaoAluno", "Aluno", new { id = l.idLicao }, null)</td>
+                    @if(l.flg_Ativo==0) {
+                        <td style="color: black; text-align:center;">@Html.ActionLink("Enviar", "EnviarLicao", "Aluno", new { idLicao = l.idLicao }, new { @class = "text-success" })</td>
+                    }
+                </tr>
+            }
         </table>
     </div>
 </div>

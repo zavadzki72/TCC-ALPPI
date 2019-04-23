@@ -53,7 +53,7 @@
                     <th style="color: white; background-color: black" scope="col">#</th>
                     <th style="color: white; text-align:center; background-color: black" scope="col">pergunta</th>
                     <th style="color: white; text-align:center; background-color: black" scope="col">Resposta</th>
-                    <th style="color: white; text-align:center; background-color: black" scope="col">Alterar/Adicionar</th>
+                    <th style="color: white; text-align:center; background-color: black" scope="col">Outros</th>
                 </tr>
                 @foreach (Pergunta index in listaDePerguntas) {
             <tr class="table-secondary">
@@ -69,7 +69,11 @@
                             r=raux;
                             <td style="color: black; vertical-align:middle; text-align:center;">@raux.des_Resposta</td>
                             <td style="vertical-align:middle;">
-                                <center> @Html.ActionLink("Editar", "EditarResposta", "Aluno", new { idPergunta = index.idPergunta, idResposta = r.idResposta }, null) </center>
+                                @if(Model.flg_Ativo==0) {
+                                    <center> @Html.ActionLink("Editar", "EditarResposta", "Aluno", new { idPergunta = index.idPergunta, idResposta = r.idResposta }, null) </center>
+                                } else {
+                                   <center>---</center>
+                                }
                             </td>
                             aux=true;
                         }
@@ -77,7 +81,11 @@
                     if(!aux) {
                         <td style="color: black; vertical-align:middle; text-align:center;">---</td>
                         <td style="vertical-align:middle;">
-                            <center> @Html.ActionLink("Adicionar", "ResponderPergunta", "Aluno", new { idPergunta = index.idPergunta }, null) </center>
+                            @if(Model.flg_Ativo==0) {
+                                <center> @Html.ActionLink("Adicionar", "ResponderPergunta", "Aluno", new { idPergunta = index.idPergunta }, null) </center>
+                            } else {
+                                <center>---</center>
+                            }
                         </td>
                     }
                 }

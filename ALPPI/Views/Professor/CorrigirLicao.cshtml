@@ -1,6 +1,6 @@
 ﻿@using ALPPI.Models
 @model List<Resposta>
-@{int cont = 0; String nmeAluno = "";}
+@{int cont = 0; String nmeAluno = ""; bool existResp = false;}
 @{
     Layout="~/Views/Shared/_Layout.cshtml";
 }
@@ -12,43 +12,67 @@
 </head>
 <div class="LISTALICAO">
     <div class="jumbotron">
-        <center><h2>Respostas da Lição: @Model[0].pergunta.licao.nme_Licao</h2></center><hr />
-        <table class="table table-hover" style="margin-bottom: 100px" border="1">
-            <tr class="table-primary">
-                <th style="color: white; background-color: black" scope="col">#</th>
-                <th style="color: white; text-align:center; background-color: black" scope="col">Resposta</th>
-                <th style="color: white; text-align:center; background-color: black" scope="col">Resposta Padrao</th>
-                <th style="color: white; text-align:center; background-color: black" scope="col">Nome do Aluno</th>
-                <th style="color: white; text-align:center; background-color: black" scope="col">Nota</th>
-                <th style="color: white; text-align:center; background-color: black" scope="col">Opções</th>
-            </tr>
-            @foreach(Resposta r in Model) {
-        <tr class="table-secondary">
-            <td style="color: black">
-                @{cont++;
-                }@cont
-            </td>
-            <td style="color: black; text-align:center;">@r.des_Resposta</td>
-            <td style="color: black; text-align:center;">@r.pergunta.des_Resposta_Padrao_Pergunta</td>
-            @if(!r.aluno.nme_Aluno.Equals(nmeAluno)) {
-                <td style="color: black; text-align:center;">@r.aluno.nme_Aluno</td>
-                nmeAluno=r.aluno.nme_Aluno;
-            } else {
-                <td style="color: black; text-align:center;">||</td>
+        @{
+            try {
+                <center><h2>Respostas da Lição: @Model[0].pergunta.licao.nme_Licao</h2></center><hr />
+                {
+                    foreach(Resposta rs in Model) {
+                        if(rs.isEnviado){
+                            existResp=true;
+                        }
+                    }
+                }
+                if(existResp){
+                    <table class="table table-hover" style="margin-bottom: 100px" border="1">
+                        <tr class="table-primary">
+                            <th style="color: white; background-color: black" scope="col">#</th>
+                            <th style="color: white; text-align:center; background-color: black" scope="col">Resposta</th>
+                            <th style="color: white; text-align:center; background-color: black" scope="col">Resposta Padrao</th>
+                            <th style="color: white; text-align:center; background-color: black" scope="col">Nome do Aluno</th>
+                            <th style="color: white; text-align:center; background-color: black" scope="col">Nota</th>
+                            <th style="color: white; text-align:center; background-color: black" scope="col">Opções</th>
+                        </tr>
+                        @foreach(Resposta r in Model) {
+                            if(r.isEnviado) {
+                            <tr class="table-secondary">
+                                <td style="color: black">
+                                    @{cont++;
+                                    }@cont
+                                </td>
+                                    <td style="color: black; text-align:center;">@r.des_Resposta</td>
+                                    <td style="color: black; text-align:center;">@r.pergunta.des_Resposta_Padrao_Pergunta</td>
+                                    @if(!r.aluno.nme_Aluno.Equals(nmeAluno)) {
+                                        <td style="color: black; text-align:center;">@r.aluno.nme_Aluno</td>
+                                        nmeAluno=r.aluno.nme_Aluno;
+                                    } else {
+                                        <td style="color: black; text-align:center;">||</td>
+                                    }
+                                    @if(r.nota!=0) {
+                                        <td style="color: black; text-align:center;">@r.nota</td>
+                                    } else {
+                                        <td style="color: black; text-align:center;">---</td>
+                                    }
+                                    @if(r.nota!=0) {
+                                        <td style="color: black; text-align:center;">@Html.ActionLink("Editar", "AddAvaliacao", "Professor", new { idResposta = r.idResposta }, null)</td>
+                                    } else {
+                                        <td style="color: black; text-align:center;">@Html.ActionLink("Adicionar", "AddAvaliacao", "Professor", new { idResposta = r.idResposta }, null)</td>
+                                    }
+                            </tr>
+                            }
+                        }
+                    </table>
+                }else{
+                    int a = Convert.ToInt32("aaa");                                    
+                }
+            } catch {
+                <br><br>
+                    <center>
+                        <img src="~/Imagens/Livros.jpg" width="50%" />
+                        <br><br><br>
+                        <h2 style="color: darkred; font:bold;">Ainda não existem respostas para esta Lição</h2>
+                    </center><hr />
             }
-            @if(r.nota!=0) {
-                <td style="color: black; text-align:center;">@r.nota</td>
-            } else {
-                <td style="color: black; text-align:center;">---</td>
-            }
-            @if(r.nota!=0) {
-                <td style="color: black; text-align:center;">@Html.ActionLink("Editar", "AddAvaliacao", "Professor", new { idResposta = r.idResposta }, null)</td>
-            } else {
-                <td style="color: black; text-align:center;">@Html.ActionLink("Adicionar", "AddAvaliacao", "Professor", new { idResposta = r.idResposta }, null)</td>
-            }
-        </tr>
-            }
-        </table>
+        }
     </div>
 </div>
 

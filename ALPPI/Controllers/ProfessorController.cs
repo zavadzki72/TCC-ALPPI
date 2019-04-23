@@ -18,6 +18,7 @@ namespace ALPPI.Controllers {
             TempData["idLicao22"]=id;
             Licao l = LicaoDAO.buscarLicaoID(id);
             ViewBag.momeLicao = l.nme_Licao;
+            ViewBag.idLicao=l.idLicao;
             return View(AlunoDAO.listarAlunos(l.turma.idTurma));
         }
         #endregion

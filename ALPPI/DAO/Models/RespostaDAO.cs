@@ -35,6 +35,15 @@ namespace ALPPI.DAO.Models {
             }
         }
 
+        public static int buscaidLicaoporResposta(Resposta r) {
+            List<Resposta> res = ctx.respostas.Where(x => x.idResposta==r.idResposta).Include(x => x.pergunta).ToList();
+            try {
+                return res[0].pergunta.licao.idLicao;
+            } catch {
+                return 0;
+            }
+        }
+
         public static Resposta buscarRespostaID(Resposta r) {
             if(ctx.respostas.FirstOrDefault(x => x.idResposta==r.idResposta)!=null) {
                 return ctx.respostas.FirstOrDefault(x => x.idResposta==r.idResposta);
@@ -58,6 +67,12 @@ namespace ALPPI.DAO.Models {
 
         public static void editarNota(Resposta r) {
             ctx.Database.ExecuteSqlCommand($"UPDATE dbo.Resposta SET nota = '{r.nota}' WHERE idResposta = {r.idResposta}");
+            ctx.SaveChanges();
+            EntitiFrame.RefreshAll();
+        }
+
+        public static void editarBoolEnviado(Resposta r) {
+            ctx.Database.ExecuteSqlCommand($"UPDATE dbo.Resposta SET isEnviado = '{r.isEnviado}' WHERE idResposta = {r.idResposta}");
             ctx.SaveChanges();
             EntitiFrame.RefreshAll();
         }

@@ -12,7 +12,7 @@ namespace ALPPI.DAO.Models {
 
         #region Listar Alunos
         public static List<Aluno> listarAlunos(int idTurma) {
-            return ctx.alunos.Where(x => x.turma.idTurma == idTurma).Include(x => x.turma).Include(x => x.sexo).Include(x => x.cidade).ToList();
+            return ctx.alunos.Where(x => x.turma.idTurma == idTurma).Include(x => x.turma).Include(x => x.sexo).Include(x => x.cidade).Include(x => x.respostas).ToList();
         }
         #endregion
 

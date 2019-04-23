@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
 </head>
 @if(!User.Identity.Name.Contains("@")&&!User.Identity.Name.Equals("")) {
-    <div class="container">
+    <div class="container" style="height: 70vh;">
         <div class="cards__block">
             <div class="card">
                 <div class="card-body">
@@ -40,7 +40,7 @@
     </div>
 }
 @if(User.Identity.Name.Contains("@ADM")){
-<div class="container">
+<div class="container" style="height: 100vh;">
     <center><h2>Bem vindo</h2><h3 style="color:seagreen"> @System.Web.HttpContext.Current.User.Identity.Name.Split('|')[2] </h3></center>
     <div class="cards__block">
         <div class="card">
@@ -63,7 +63,7 @@
 </div>
 }
 @if(User.Identity.Name.Contains("@") && !User.Identity.Name.Contains("ADM")) {
-    <div class="container">
+    <div class="container" style="height: 100vh;">
         <center><h2>Bem vindo</h2><h3 style="color:seagreen"> @System.Web.HttpContext.Current.User.Identity.Name.Split('|')[2] </h3></center>
         <div class="cards__block">
             <div class="card">
@@ -112,7 +112,7 @@
     </div>
 }
 @if(User.Identity.Name.Equals("")) {
-    <div class="container">
+    <div class="container" style="height: 100vh;">
         <div class="error__message">
             <img class="img__error" src="~/Imagens/Livros.jpg" height="200" width="600" />
             <div class="alert alert-dismissible alert-warning">

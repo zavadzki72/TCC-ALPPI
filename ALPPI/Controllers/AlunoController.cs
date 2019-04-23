@@ -17,7 +17,7 @@ namespace ALPPI.Controllers {
 
         #region Lista de Lições
         public ActionResult ListaLicoes() {
-            int idALuno = Convert.ToInt16(System.Web.HttpContext.Current.User.Identity.Name.Split('|')[3]);
+            ViewBag.idALuno = Convert.ToInt16(System.Web.HttpContext.Current.User.Identity.Name.Split('|')[3]);
             return View(LicaoDAO.listLicaoNotId());
         }
         #endregion
@@ -78,6 +78,40 @@ namespace ALPPI.Controllers {
             int idAluno = Convert.ToInt16(System.Web.HttpContext.Current.User.Identity.Name.Split('|')[3]);
             ViewBag.listaDeRespostas=RespostaDAO.listaRespostas(id, idAluno);
             return View(LicaoDAO.buscarLicaoID(id));
+        }
+        #endregion
+
+        #region Link Enviar resposta
+        public ActionResult EnviarLicao(int idLicao) {
+            int idAluno = Convert.ToInt16(System.Web.HttpContext.Current.User.Identity.Name.Split('|')[3]);
+
+            Licao l = LicaoDAO.buscarLicaoID(idLicao);
+            List<Pergunta> ps = l.perguntas.ToList();
+            List<Resposta> rs = new List<Resposta>();
+            List<Resposta> rsFinal = new List<Resposta>();
+            foreach(Pergunta p in ps){
+                List<Resposta> aux = p.respostas.ToList();
+                foreach(Resposta r in aux){
+                    rs.Add(r);
+                }
+            }
+            foreach(Resposta r in rs){
+                if(r.aluno.idAluno == idAluno) {
+                    rsFinal.Add(r);
+                }
+            }
+
+            try {
+                foreach(Resposta r in rsFinal) {
+                    r.isEnviado=true;
+                    RespostaDAO.editarBoolEnviado(r);
+                }
+                TempData["Sucesso"]=true;
+                return RedirectToAction("LicaoPendente", "Aluno");
+            } catch {
+                TempData["Sucesso"]=false;
+                return RedirectToAction("LicaoPendente", "Aluno");
+            }
         }
         #endregion
 

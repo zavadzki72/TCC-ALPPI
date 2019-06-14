@@ -1,9 +1,9 @@
 ﻿@using ALPPI.Models
-@model List<Aluno>
+@model List<Professor>
 @{int cont = 0;}
 
-@{ 
-    int retIdade(DateTime data){
+@{
+    int retIdade(DateTime data) {
         int ano_atual = DateTime.Now.Year;
         int ano_niver = data.Year;
         int mes_atual = DateTime.Now.Month;
@@ -20,36 +20,35 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Lista de Alunos - ALPPI</title>
+    <title>Lista de Professores - ALPPI</title>
     <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
 </head>
 <div class="LISTALICAO">
     <div class="jumbotron">
-        <center><h2>Alunos da Turma</h2></center><hr />
+        <center><h2>Lista de Professores</h2></center><hr />
         <table class="table table-hover" style="margin-bottom: 100px" border="0">
             <tr class="table-primary">
                 <th style="color: white; background-color: black" scope="col">#</th>
                 <th style="color: white; text-align:center; background-color: black" scope="col">Nome</th>
                 <th style="color: white; text-align:center; background-color: black" scope="col">Matricula</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">CPF</th>
                 <th style="color: white; text-align:center; background-color: black" scope="col">Idade</th>
-                <th style="color: white; text-align:center; background-color: black" scope="col">Sexo</th>
-                <th style="color: white; text-align:center; background-color: black" scope="col">Turma</th>
+                <th style="color: white; text-align:center; background-color: black" scope="col">Email</th>
                 <th style="color: white; text-align:center; background-color: black" scope="col" colspan="2">#</th>
             </tr>
-            @foreach(Aluno a in Model) {
+            @foreach(Professor p in Model) {
         <tr class="table-secondary">
             <td style="color: black">
                 @{cont++;
                 }@cont
             </td>
-            <td style="color: black; text-align:center;">@a.nme_Aluno</td>
-            <td style="color: black; text-align:center;">@a.matricula_Aluno</td>
-            <td style="color: black; text-align:center;">@retIdade(a.dta_NascAluno)</td>
-            <td style="color: black; text-align:center;">@a.sexo.nme_Sexo</td>
-            <td style="color: black; text-align:center;">@a.turma.nme_Turma</td>
-            <td style="color: black; text-align:center;">@Html.ActionLink("Editar", "EditarAluno", "Professor", new { id = a.idAluno}, null)</td>
-            <td style="color: black; text-align:center;">@Html.ActionLink("Inativar", "InativarAluno", "Professor", new { id = a.idAluno}, null)</td>
-
+            <td style="color: black; text-align:center;">@p.nme_Professor</td>
+            <td style="color: black; text-align:center;">@p.matricula_Professor</td>
+            <td style="color: black; text-align:center;">@p.cpf_Professor</td>
+            <td style="color: black; text-align:center;">@retIdade(p.dta_NascProfessor)</td>
+            <td style="color: black; text-align:center;">@p.eml_Professor</td>
+            <td style="color: black; text-align:center;">@Html.ActionLink("Editar", "EditarProfessor", "Administrador", new { id = p.idProfessor }, null)</td>
+            <td style="color: black; text-align:center;">@Html.ActionLink("Inativar", "InativarProfessor", "Administrador", new { id = p.idProfessor }, null)</td>
         </tr>
             }
         </table>

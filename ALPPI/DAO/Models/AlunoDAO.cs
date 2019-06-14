@@ -78,5 +78,16 @@ namespace ALPPI.DAO.Models {
             return ctx.alunos.Include(a => a.turma).FirstOrDefault(a => a.nme_Aluno.Equals(nome) && a.matricula_Aluno== matricula);
         }
         #endregion
+
+        #region Editar Aluno
+        public static Boolean editarAluno(Aluno a) {
+            if(ctx.alunos.FirstOrDefault(x => x.idAluno==a.idAluno)!=null) {
+                ctx.Entry(a).State=EntityState.Modified;
+                ctx.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+        #endregion
     }
 }

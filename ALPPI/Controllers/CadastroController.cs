@@ -45,6 +45,40 @@ namespace ALPPI.Controllers {
         }
         #endregion
 
+
+        #region Cadastrar Professor [VIEW]
+        [Authorize(Roles = "ADM")]
+        public ActionResult CadastrarProfessor() {
+            ViewBag.idSexo=new SelectList(SexoDAO.listaSexo(), "idSexo", "nme_Sexo");
+            ViewBag.idCidade=new SelectList(CidadeDAO.listaCidades(), "idCidade", "nme_Cidade");
+            return View();
+        }
+        #endregion
+
+        #region Cadastrar Professor [POST]
+        [Authorize(Roles = "ADM")]
+        [HttpPost]
+        public ActionResult CadastrarProfessor(Professor professor, string data, int idSexo, int idCidade) {
+            ViewBag.idSexo=new SelectList(SexoDAO.listaSexo(), "idSexo", "nme_Sexo");
+            ViewBag.idCidade=new SelectList(CidadeDAO.listaCidades(), "idCidade", "nme_Cidade");
+
+            if(ModelState.IsValid) {
+                professor.dta_NascProfessor=Convert.ToDateTime(data);
+
+                professor.sexo=SexoDAO.sexoId(idSexo);
+                professor.cidade=CidadeDAO.cidadeId(idCidade);
+
+                if(ProfessorDAO.cadastrarProfessor(professor)) {
+                    ViewBag.Sucesso=true;
+                    return View();
+                } else {
+                    ModelState.AddModelError("", "Professor ja cadastrado!");
+                }
+            }
+            return View(professor);
+        }
+        #endregion
+
         #region Cadastrar Pergunta [VIEW]
         [Authorize(Roles = "PROFESSOR")]
         public ActionResult CadastrarPergunta() {

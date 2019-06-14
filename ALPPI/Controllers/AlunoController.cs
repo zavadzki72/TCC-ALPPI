@@ -23,12 +23,14 @@ namespace ALPPI.Controllers {
         #endregion
 
         public ActionResult EditarResposta(int idPergunta, int idResposta) {
+            ViewBag.DescPergunta=PerguntaDAO.buscarPerguntaID(idPergunta).des_Pergunta;
             ViewBag.idPergunta=idPergunta;
             ViewBag.idResposta=idResposta;
             return View();
         }
 
         public ActionResult ResponderPergunta(int idPergunta) {
+            ViewBag.DescPergunta=PerguntaDAO.buscarPerguntaID(idPergunta).des_Pergunta;
             ViewBag.idPergunta=idPergunta;
             return View();
         }
@@ -37,6 +39,8 @@ namespace ALPPI.Controllers {
         public ActionResult EditarResposta(int idPergunta, int idResposta, Resposta r) {
             ViewBag.idPergunta=idPergunta;
             ViewBag.idResposta=idResposta;
+            ViewBag.DescPergunta=PerguntaDAO.buscarPerguntaID(idPergunta).des_Pergunta;
+
             int id = Convert.ToInt32(TempData["idLicao"]);
             int idAluno = Convert.ToInt16(System.Web.HttpContext.Current.User.Identity.Name.Split('|')[3]);
             if(ModelState.IsValid) {
@@ -57,6 +61,7 @@ namespace ALPPI.Controllers {
         public ActionResult ResponderPergunta(Resposta resposta, int idPergunta) {
             int idAluno = Convert.ToInt16(System.Web.HttpContext.Current.User.Identity.Name.Split('|')[3]);
             int id = Convert.ToInt32(TempData["idLicao"]);
+            ViewBag.DescPergunta=PerguntaDAO.buscarPerguntaID(idPergunta).des_Pergunta;
             if(ModelState.IsValid) {
                 resposta.aluno=AlunoDAO.buscarAluno("id", idAluno.ToString());
                 resposta.pergunta=PerguntaDAO.buscarPerguntaID(idPergunta);

@@ -3,6 +3,7 @@
 
 @{ 
     int idPergunta = ViewBag.idPergunta, idResposta = ViewBag.idResposta;
+    string DescPergunta = ViewBag.DescPergunta;
 }
 
 <head>
@@ -23,6 +24,10 @@
         }
         <center><p>@Html.ValidationSummary(true, null, new { @class = "text-danger" })</p></center><br>
         <div class="container">
+            <div class="cards__block">  
+               <br><center><p style="color: black; font-size: 20px">@DescPergunta</p></center>
+            </div>
+            <br>
             <div class="cards__block">      
                 @Html.Hidden("idPergunta",idPergunta,null)
                 @Html.Hidden("idResposta", idResposta, null)

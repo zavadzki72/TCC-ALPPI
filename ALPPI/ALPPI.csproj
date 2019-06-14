@@ -147,6 +147,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdministradorController.cs" />
     <Compile Include="Controllers\AlunoController.cs" />
     <Compile Include="Controllers\CadastroController.cs" />
     <Compile Include="Controllers\ContaController.cs" />
@@ -303,6 +304,9 @@
     <Content Include="Views\Professor\AddAvaliacao.cshtml" />
     <Content Include="Views\Professor\verNotasLicao.cshtml" />
     <Content Include="Views\Aluno\ListaLicoes.cshtml" />
+    <Content Include="Views\Cadastro\CadastrarProfessor.cshtml" />
+    <Content Include="Views\Administrador\listaProfessor.cshtml" />
+    <Content Include="Views\Administrador\EditarProfessor.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -128,6 +128,44 @@ namespace ALPPI.Controllers {
         }
         #endregion
 
+        #region Editar Aluno [VIEW]
+        [HttpGet]
+        public ActionResult EditarAluno(int id) {
+            ViewBag.idCidade=new SelectList(CidadeDAO.listaCidades(), "idCidade", "nme_Cidade");
+            ViewBag.idTurma=new SelectList(TurmaDAO.listaTurmas(true), "idTurma", "ano");
+            ViewBag.idSexo=new SelectList(SexoDAO.listaSexo(), "idSexo", "nme_Sexo");
+
+            return View(AlunoDAO.buscarAluno("id", id.ToString()));
+        }
+        #endregion
+
+        #region Editar Aluno [POST]
+        [HttpPost]
+        public ActionResult EditarAluno(Aluno a, string data) {
+            ViewBag.idCidade=new SelectList(CidadeDAO.listaCidades(), "idCidade", "nme_Cidade");
+            ViewBag.idTurma=new SelectList(TurmaDAO.listaTurmas(true), "idTurma", "ano");
+            ViewBag.idSexo=new SelectList(SexoDAO.listaSexo(), "idSexo", "nme_Sexo");
+
+            Aluno al = AlunoDAO.buscarAluno("id", a.idAluno.ToString());
+
+            try {
+
+                al.nme_Aluno=a.nme_Aluno;
+                al.cpf_Aluno=a.cpf_Aluno;
+                al.dta_NascAluno=Convert.ToDateTime(data);
+
+                if(AlunoDAO.editarAluno(al)) {
+                    ViewBag.Sucesso=true;
+                    return RedirectToAction("ListaAluno", "Professor");
+                }
+            } catch {
+                ModelState.AddModelError("", "Não foi possivel editar o Aluno!");
+                return View(al);
+            }
+            return View(al);
+        }
+        #endregion
+
         #region Editar Pergunta [VIEW]
         [HttpGet]
         public ActionResult EditarPergunta(int id) {
@@ -168,6 +206,19 @@ namespace ALPPI.Controllers {
             RespostaDAO.editarNota(resposta);
             ViewBag.Sucesso=true;
             return RedirectToAction("CorrigirLicao/"+id, "Professor");
+        }
+        #endregion
+
+        #region Inativar Aluno
+        public ActionResult InativarAluno(int id) {
+            if(ModelState.IsValid) {
+                Aluno a = AlunoDAO.buscarAluno("id", id.ToString());
+                a.flg_Inativo=1;
+                if(AlunoDAO.editarAluno(a)) {
+                    return RedirectToAction("ListaAluno", "Professor");
+                }
+            }
+            return RedirectToAction("ListaAluno", "Professor");
         }
         #endregion
 

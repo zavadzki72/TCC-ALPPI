@@ -28,7 +28,7 @@ namespace ALPPI.Models {
 
         public override string[] GetRolesForUser(string username){
             if (username.Contains("@ADM")) {
-                string[] sroles = { "ADMINISTRADOR" };
+                string[] sroles = { "ADM" };
                 return sroles;
             } else if (!username.Contains("@") && !username.Equals("")) {
                 string[] sroles = { "ALUNO" };

@@ -34,7 +34,7 @@ namespace ALPPI.Migrations {
 
 
             var adms = new List<Administrador>{
-                new Administrador{nme_Administrador="Marccus", eml_Administrador="teste@123.com", senha_Administrador="1234"}
+                new Administrador{nme_Administrador="Marccus", eml_Administrador="teste@ADM.com", senha_Administrador="1234"}
             };
             adms.ForEach(a => context.administradores.Add(a));
             context.SaveChanges();

@@ -81,5 +81,16 @@ namespace ALPPI.DAO.Models {
             return ctx.professores.FirstOrDefault(x => x.eml_Professor.Equals(email) && x.senha_Professor.Equals(senha));
         }
         #endregion
+
+        #region Editar Professor
+        public static Boolean editarProfessor(Professor p) {
+            if(ctx.professores.FirstOrDefault(x => x.idProfessor==p.idProfessor)!=null) {
+                ctx.Entry(p).State=EntityState.Modified;
+                ctx.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+        #endregion
     }
 }

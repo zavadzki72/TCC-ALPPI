@@ -1,7 +1,10 @@
-﻿using System;
+﻿using ALPPI.Helpers;
+using ALPPI.Helpers.CustomValidations;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.UI.WebControls;
 
 namespace ALPPI.Models {
     public class Aluno {
@@ -14,10 +17,15 @@ namespace ALPPI.Models {
 
         [Required(ErrorMessage = "Esse campo não pode ser Vazio/Nullo")]
         [Display(Name = "Matricula")]
+        [CustomValidationNumber(ErrorMessage = "Esse campo deve ser preenchido somente com numeros")]
+        [MinLength(11, ErrorMessage = "Esse campo tem que ter 11 digitos")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Esse campo deve ser preenchido somente com numeros")]
         public long matricula_Aluno { get; set; }
 
         [Required(ErrorMessage = "Esse campo não pode ser Vazio/Nullo")]
         [Display(Name = "CPF")]
+        [CustomValidationCPF(ErrorMessage = "CPF inválido")]
+        [RegularExpression(@"^[0-9.-]*$", ErrorMessage = "Esse campo deve ser preenchido somente com numeros")]
         public long cpf_Aluno { get; set; }
 
         [Required(ErrorMessage = "Esse campo não pode ser Vazio/Nullo")]

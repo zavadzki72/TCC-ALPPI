@@ -169,8 +169,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CustomValidations\CustomValidationCPFAttribute.cs" />
+    <Compile Include="Helpers\CustomValidations\CustomValidationNumberAtribute.cs" />
     <Compile Include="Helpers\EntitiFrame.cs" />
     <Compile Include="Helpers\MessageHelper.cs" />
+    <Compile Include="Helpers\Util.cs" />
     <Compile Include="Migrations\201903262101288_bancov3.cs" />
     <Compile Include="Migrations\201903262101288_bancov3.Designer.cs">
       <DependentUpon>201903262101288_bancov3.cs</DependentUpon>
@@ -222,6 +225,28 @@
     <Content Include="Imagens\IFPR-LOGO2.png" />
     <Content Include="Imagens\IFPR.png" />
     <Content Include="Imagens\Livros.jpg" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\.gitignore" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\dist\jquery.mask.js" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\dist\jquery.mask.min.js" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\Gruntfile.js" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\package.js" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\src\jquery.mask.js" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\jquery.mask.test.js" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\qunit.css" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\qunit.js" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\sinon-1.10.3.js" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\sinon-qunit-1.0.0.js" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\sinon-qunit.js" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\test-for-jquery-1.11.1.html" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\test-for-jquery-1.7.2.html" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\test-for-jquery-1.8.3.html" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\test-for-jquery-1.9.1.html" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\test-for-jquery-2.1.1.html" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\test-for-jquery-3.0.0.html" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\test-for-zepto.html" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\zepto\data.js" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\zepto\event.js" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\test\zepto\zepto.min.js" />
     <Content Include="Scripts\angular-moment.js" />
     <Content Include="Scripts\angular-moment.min.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
@@ -235,6 +260,22 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\.jshintrc" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\.ruby-version" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\.travis.yml" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\bower.json" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\CHANGELOG.md" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\component.json" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\composer.json" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\CONTRIBUTING.md" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\deploy.rb" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\docker-compose.yml" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\Dockerfile" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\ISSUE_TEMPLATE.md" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\LICENSE" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\package-lock.json" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\package.json" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\README.md" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\datepicker-pt-BR.js" />
     <None Include="Scripts\jquery-1.10.2-vsdoc.js" />

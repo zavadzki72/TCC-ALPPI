@@ -7,13 +7,13 @@ namespace ALPPI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class statusResp : IMigrationMetadata
+    public sealed partial class bugLoco : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(statusResp));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(bugLoco));
         
         string IMigrationMetadata.Id
         {
-            get { return "201904231756480_statusResp"; }
+            get { return "201906190102104_bugLoco"; }
         }
         
         string IMigrationMetadata.Source

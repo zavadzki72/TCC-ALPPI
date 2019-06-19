@@ -25,7 +25,7 @@ namespace ALPPI.Controllers {
 
         #region Lista de Lições
         public ActionResult ListaLicao() {
-            long CPF = Convert.ToInt32(System.Web.HttpContext.Current.User.Identity.Name.Split('|')[1]);
+            long CPF = Convert.ToInt64(System.Web.HttpContext.Current.User.Identity.Name.Split('|')[1]);
             return View(LicaoDAO.listLicao(CPF));
         }
         #endregion
@@ -44,7 +44,6 @@ namespace ALPPI.Controllers {
 
         #region View Ver Lições
         public ActionResult VerLicao(int id) {
-            long CPF = Convert.ToInt32(System.Web.HttpContext.Current.User.Identity.Name.Split('|')[1]);
             TempData["idLicao"]=id;
             ViewBag.listaDePerguntas=PerguntaDAO.listaPerguntas(id);
             return View(LicaoDAO.buscarLicaoID(id));
@@ -74,6 +73,20 @@ namespace ALPPI.Controllers {
                 }
             }
             return RedirectToAction("ListaLicao", "Professor");
+        }
+        #endregion
+
+        #region Link Concluir Lição
+        public ActionResult ExcluirPergunta(int id){
+            Pergunta p = PerguntaDAO.buscarPerguntaID(id);
+            int idLicao = p.licao.idLicao;
+            bool result = PerguntaDAO.excluirPergunta(p);
+            if(result){
+                ViewBag.SucessoExclusao = true;
+                return RedirectToAction("VerLicao/" + idLicao, "Professor");
+            }
+            ViewBag.SucessoExclusao = false;
+            return RedirectToAction("VerLicao/" + idLicao, "Professor");
         }
         #endregion
 
@@ -152,11 +165,12 @@ namespace ALPPI.Controllers {
 
                 al.nme_Aluno=a.nme_Aluno;
                 al.cpf_Aluno=a.cpf_Aluno;
+                al.matricula_Aluno = a.matricula_Aluno;
                 al.dta_NascAluno=Convert.ToDateTime(data);
 
                 if(AlunoDAO.editarAluno(al)) {
                     ViewBag.Sucesso=true;
-                    return RedirectToAction("ListaAluno", "Professor");
+                    return RedirectToAction("ListaAluno/" + al.turma.idTurma, "Professor"); ;
                 }
             } catch {
                 ModelState.AddModelError("", "Não foi possivel editar o Aluno!");
@@ -215,7 +229,7 @@ namespace ALPPI.Controllers {
                 Aluno a = AlunoDAO.buscarAluno("id", id.ToString());
                 a.flg_Inativo=1;
                 if(AlunoDAO.editarAluno(a)) {
-                    return RedirectToAction("ListaAluno", "Professor");
+                    return RedirectToAction("ListaAluno/" + a.turma.idTurma, "Professor");
                 }
             }
             return RedirectToAction("ListaAluno", "Professor");

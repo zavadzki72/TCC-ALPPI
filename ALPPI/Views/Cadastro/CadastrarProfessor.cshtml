@@ -4,6 +4,15 @@
     DateTime[] dias = new DateTime[] { DateTime.Today.Date, DateTime.Today.Date.AddDays(1), DateTime.Today.Date.AddDays(2), DateTime.Today.Date.AddDays(3), DateTime.Today.Date.AddDays(4), DateTime.Today.Date.AddDays(5), DateTime.Today.Date.AddDays(6) };
 }
 
+
+@*SCRIPTS VALID CPF*@
+<script src="@Url.Content("~/Scripts/jquery-1.4.4.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")" type="text/javascript"></script>
+@*--*@
+
+@*SCRIPTS DATE*@
 <link href="@Url.Content("~/Content/themes/base/jquery-ui.min.css")" rel="stylesheet" />
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="@Url.Content("~/Scripts/jquery-1.12.4.min.js")"></script>
@@ -13,9 +22,14 @@
 <script src="~/Scripts/datepicker-pt-BR.js" charset="UTF-8"></script>
 <script type="text/javascript">
     $(function () {
-        $('.date-picker').datepicker({ dateFormat: 'dd/mm/yy'});
+        $('.date-picker').datepicker({ dateFormat: 'dd/mm/yy', maxDate: '-15y' });
     });
 </script>
+@*--*@
+
+@*MASCARAS*@
+<script src="~/lib/jQuery-Mask-Plugin-master/src/jquery.mask.js" type="text/javascript" asp-append-version="true"></script>
+@*--*@
 
 <head>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
@@ -24,10 +38,13 @@
     <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
 </head>
 <div class="REGISTRO">
-    @using(Html.BeginForm("CadastrarProfessor", "Cadastro", FormMethod.Post)) {
+    @using (Html.BeginForm("CadastrarProfessor", "Cadastro", FormMethod.Post))
+    {
         <br><br><br>
-        if(ViewBag.Sucesso!=null) {
-            if(ViewBag.Sucesso) {
+        if (ViewBag.Sucesso != null)
+        {
+            if (ViewBag.Sucesso)
+            {
                 <div class="text-success"><center><p>Professor Registrado em nossos sistemas</p></center><br></div>
             }
         }
@@ -37,14 +54,14 @@
                 <div class="form-group">
                     @Html.ValidationMessageFor(Model => Model.nme_Professor, null, new { @class = "text-danger" })
                     @Html.LabelFor(Model => Model.nme_Professor, new { @for = "exampleInputEmail1" })
-                    @Html.TextBoxFor(Model => Model.nme_Professor, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Nome do Professor" })
+                    @Html.TextBoxFor(Model => Model.nme_Professor, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Nome do Professor", @autocomplete = "off" })
                     <center><small id="emailHelp" class="form-text text-muted">Digite o nome do Professor</small></center>
                 </div>
                 <br>
                 <div class="form-group">
                     @Html.ValidationMessageFor(Model => Model.dta_NascProfessor, null, new { @class = "text-danger" })
                     @Html.LabelFor(Model => Model.dta_NascProfessor, new { @for = "exampleInputEmail1", id = "exampleInputEmail1" })
-                    @Html.TextBox("data", "", new { @class = "date-picker form-control" })
+                    @Html.TextBox("data", "", new { @class = "date-picker form-control", @autocomplete = "off", id="idData" })
                     <center><small id="emailHelp" class="form-text text-muted">Informe a Data de Nascimento do Professor</small></center>
                 </div>
             </div>
@@ -53,21 +70,21 @@
                 <div class="form-group">
                     @Html.ValidationMessageFor(Model => Model.matricula_Professor, null, new { @class = "text-danger" })
                     @Html.LabelFor(Model => Model.matricula_Professor, new { @for = "exampleInputEmail1" })
-                    @Html.TextBoxFor(Model => Model.matricula_Professor, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Matricula do Professor" })
+                    @Html.TextBoxFor(Model => Model.matricula_Professor, new { @class = "form-control", id = "idMatricula", @placeholder = "Matricula do Professor", @autocomplete = "off" })
                     <center><small id="emailHelp" class="form-text text-muted">Digite a Matricula do Professor</small></center>
                 </div>
                 <br>
                 <div class="form-group">
                     @Html.ValidationMessageFor(Model => Model.cpf_Professor, null, new { @class = "text-danger" })
                     @Html.LabelFor(Model => Model.cpf_Professor, new { @for = "exampleInputEmail1" })
-                    @Html.TextBoxFor(Model => Model.cpf_Professor, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "CPF do Professor" })
+                    @Html.TextBoxFor(Model => Model.cpf_Professor, new { @class = "form-control", @data_val="false", @id = "idCPF", @placeholder = "CPF do Professor", @autocomplete = "off" })
                     <center><small id="emailHelp" class="form-text text-muted">Digite o CPF do professor</small></center>
                 </div>
             </div>
             <br>
             <div class="cards__block">
                 <div class="form-group">
-                    <label for="exampleSelect1">Sexo</label>
+                    <label for="exampleSelect1"></label>
                     @Html.ValidationMessageFor(Model => Model.sexo.idSexo, null, new { @class = "text-danger" })
                     @Html.LabelFor(Model => Model.sexo.idSexo, new { @for = "exampleInputEmail1" })
                     @Html.DropDownList("idSexo", null, "--Selecione--", htmlAttributes: new { @class = "form-control" })
@@ -75,7 +92,7 @@
                 </div>
                 <br>
                 <div class="form-group">
-                    <label for="exampleSelect1">Cidade</label>
+                    <label for="exampleSelect1"></label>
                     @Html.ValidationMessageFor(Model => Model.cidade.idCidade, null, new { @class = "text-danger" })
                     @Html.LabelFor(Model => Model.cidade.idCidade, new { @for = "exampleInputEmail1" })
                     @Html.DropDownList("idCidade", null, "--Selecione--", htmlAttributes: new { @class = "form-control" })
@@ -87,21 +104,28 @@
                 <div class="form-group">
                     @Html.ValidationMessageFor(Model => Model.eml_Professor, null, new { @class = "text-danger" })
                     @Html.LabelFor(Model => Model.eml_Professor, new { @for = "exampleInputEmail1" })
-                    @Html.TextBoxFor(Model => Model.eml_Professor, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Email do Professor" })
+                    @Html.TextBoxFor(Model => Model.eml_Professor, new { @class = "form-control", id = "teste", @placeholder = "Email do Professor", @autocomplete = "off" })
                     <center><small id="emailHelp" class="form-text text-muted">Digite o Email do Professor</small></center>
                 </div>
                 <div class="form-group">
                     @Html.ValidationMessageFor(Model => Model.senha_Professor, null, new { @class = "text-danger" })
                     @Html.LabelFor(Model => Model.senha_Professor, new { @for = "exampleInputEmail1" })
-                    @Html.PasswordFor(Model => Model.senha_Professor, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Senha do Professor" })
+                    @Html.PasswordFor(Model => Model.senha_Professor, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Senha do Professor", @autocomplete = "off" })
                     <center><small id="emailHelp" class="form-text text-muted">Digite a senha do professor</small></center>
                 </div>
                 <br>
                 <div class="form-group">
-                    <center><button type="submit" class="btn btn-outline-success">Pronto</button></center>
+                    <center><button type="submit" onclick="$('#idCPF').unmask();" class="btn btn-outline-success">Pronto</button></center>
                     <br><br><br><br><br><br><br><br>
                 </div>
             </div>
         </div>
+
+        @*SCRIPTS*@
+        <script>$('#idCPF').mask('000.000.000-00', { placeholder: "___.___.___-__" });</script>
+        <script>$('#idData').mask('00/00/0000', { placeholder: "__/__/____" });</script>
+
+        @*--*@
+
     }
 </div>

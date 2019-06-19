@@ -27,6 +27,14 @@ namespace ALPPI.Controllers {
             ViewBag.idSexo=new SelectList(SexoDAO.listaSexo(), "idSexo", "nme_Sexo");
             ViewBag.idCidade=new SelectList(CidadeDAO.listaCidades(), "idCidade", "nme_Cidade");
 
+            if(aluno.cpf_Aluno.ToString().Length < 11){
+                var valueLong = aluno.cpf_Aluno.ToString();
+                for(int i=valueLong.Length; i<11;i++){
+                    valueLong = "0"+valueLong;
+                }
+                aluno.cpf_Aluno = long.Parse(valueLong, System.Globalization.NumberStyles.Integer);
+            }
+
             if(ModelState.IsValid) {
                 aluno.dta_NascAluno=Convert.ToDateTime(data);
 

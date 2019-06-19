@@ -27,32 +27,37 @@
                 <th style="color: white; text-align:center; background-color: black" scope="col">Nota (Numerica)</th>
                 <th style="color: white; text-align:center; background-color: black" scope="col">Conceito</th>
             </tr>
-            @foreach(Aluno a in Model) {
+            @foreach (Aluno a in Model) {
                 <tr class="table-secondary">
                     @{cont2++;}
                     <td style="color: black; text-align:center;">@cont2</td>
-                    <td style="color: black; text-align:center;">@a.nme_Aluno</td>
-                    @foreach(Resposta r in Model[cont].respostas) {
-                        if(RespostaDAO.buscaidLicaoporResposta(r) == idLicao) {
-                            notaTotal=r.nota+notaTotal;
+                    @if (a.flg_Inativo == 0) {
+                <td style="color: black; text-align:center;">@a.nme_Aluno <p style="color:darkgreen;">(INATIVO)</p></td>
+                    }
+                    else{
+                        <td style="color: black; text-align:center;">@a.nme_Aluno <p style="color:darkred;">(INATIVO)</p></td>
+                    }
+                    @foreach (Resposta r in Model[cont].respostas) {
+                        if (RespostaDAO.buscaidLicaoporResposta(r) == idLicao) {
+                            notaTotal = r.nota + notaTotal;
                         }
                     }
                     <td style="color: black; text-align:center;">@notaTotal</td>
-                    @if(notaTotal<6) {
+                    @if (notaTotal < 6) {
                         <td style="color: black; text-align:center;">D</td>
-                    } else if(notaTotal>=6&&notaTotal<8) {
+                    } else if (notaTotal >= 6 && notaTotal < 8) {
                         <td style="color: black; text-align:center;">C</td>
-                    } else if(notaTotal==10) {
+                    } else if (notaTotal == 10) {
                         <td style="color: black; text-align:center;">A</td>
                     } else {
                         <td style="color: black; text-align:center;">B</td>
                     }
                     @{
-                      cont++;
-                      notaTotal=0;
+                        cont++;
+                        notaTotal = 0;
                     }
                 </tr>
-             }
+            }
         </table>
     </div>
 </div>

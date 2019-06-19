@@ -174,17 +174,13 @@
     <Compile Include="Helpers\EntitiFrame.cs" />
     <Compile Include="Helpers\MessageHelper.cs" />
     <Compile Include="Helpers\Util.cs" />
-    <Compile Include="Migrations\201903262101288_bancov3.cs" />
-    <Compile Include="Migrations\201903262101288_bancov3.Designer.cs">
-      <DependentUpon>201903262101288_bancov3.cs</DependentUpon>
+    <Compile Include="Migrations\201906190046550_novoComputador.cs" />
+    <Compile Include="Migrations\201906190046550_novoComputador.Designer.cs">
+      <DependentUpon>201906190046550_novoComputador.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201903281702204_attBanco.cs" />
-    <Compile Include="Migrations\201903281702204_attBanco.Designer.cs">
-      <DependentUpon>201903281702204_attBanco.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201904231756480_statusResp.cs" />
-    <Compile Include="Migrations\201904231756480_statusResp.Designer.cs">
-      <DependentUpon>201904231756480_statusResp.cs</DependentUpon>
+    <Compile Include="Migrations\201906190102104_bugLoco.cs" />
+    <Compile Include="Migrations\201906190102104_bugLoco.Designer.cs">
+      <DependentUpon>201906190102104_bugLoco.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Administrador.cs" />
@@ -348,6 +344,7 @@
     <Content Include="Views\Cadastro\CadastrarProfessor.cshtml" />
     <Content Include="Views\Administrador\listaProfessor.cshtml" />
     <Content Include="Views\Administrador\EditarProfessor.cshtml" />
+    <Content Include="Views\Professor\EditarAluno.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -362,14 +359,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201903262101288_bancov3.resx">
-      <DependentUpon>201903262101288_bancov3.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906190046550_novoComputador.resx">
+      <DependentUpon>201906190046550_novoComputador.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201903281702204_attBanco.resx">
-      <DependentUpon>201903281702204_attBanco.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201904231756480_statusResp.resx">
-      <DependentUpon>201904231756480_statusResp.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201906190102104_bugLoco.resx">
+      <DependentUpon>201906190102104_bugLoco.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

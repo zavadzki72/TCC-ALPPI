@@ -37,21 +37,24 @@
                 <th style="color: white; text-align:center; background-color: black" scope="col" colspan="2">#</th>
             </tr>
             @foreach(Aluno a in Model) {
-        <tr class="table-secondary">
-            <td style="color: black">
-                @{cont++;
-                }@cont
-            </td>
-            <td style="color: black; text-align:center;">@a.nme_Aluno</td>
-            <td style="color: black; text-align:center;">@a.matricula_Aluno</td>
-            <td style="color: black; text-align:center;">@retIdade(a.dta_NascAluno)</td>
-            <td style="color: black; text-align:center;">@a.sexo.nme_Sexo</td>
-            <td style="color: black; text-align:center;">@a.turma.nme_Turma</td>
-            <td style="color: black; text-align:center;">@Html.ActionLink("Editar", "EditarAluno", "Professor", new { id = a.idAluno}, null)</td>
-            <td style="color: black; text-align:center;">@Html.ActionLink("Inativar", "InativarAluno", "Professor", new { id = a.idAluno}, null)</td>
+                if (a.flg_Inativo == 0) {
+                    <tr class="table-secondary">
+                        <td style="color: black">
+                            @{cont++;
+                            }@cont
+                        </td>
+                        <td style="color: black; text-align:center;">@a.nme_Aluno</td>
+                        <td style="color: black; text-align:center;">@a.matricula_Aluno</td>
+                        <td style="color: black; text-align:center;">@retIdade(a.dta_NascAluno)</td>
+                        <td style="color: black; text-align:center;">@a.sexo.nme_Sexo</td>
+                        <td style="color: black; text-align:center;">@a.turma.nme_Turma</td>
+                        <td style="color: black; text-align:center;">@Html.ActionLink("Editar", "EditarAluno", "Professor", new { id = a.idAluno }, null)</td>
+                        <td style="color: black; text-align:center;">@Html.ActionLink("Inativar", "InativarAluno", "Professor", new { id = a.idAluno }, null)</td>
 
-        </tr>
-            }
+                    </tr>
+                }
+             }
         </table>
     </div>
 </div>
+<br /><br /><br /><br /><br />

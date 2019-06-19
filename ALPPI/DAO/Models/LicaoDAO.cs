@@ -45,6 +45,7 @@ namespace ALPPI.DAO.Models {
             return false;
         }
 
+
         public static Boolean addLicao(Licao l) {
             if(buscarLicao(l)==null) {
                 ctx.licoes.Add(l);

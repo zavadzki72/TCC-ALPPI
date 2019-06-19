@@ -37,20 +37,22 @@
                 <th style="color: white; text-align:center; background-color: black" scope="col" colspan="2">#</th>
             </tr>
             @foreach(Professor p in Model) {
-        <tr class="table-secondary">
-            <td style="color: black">
-                @{cont++;
-                }@cont
-            </td>
-            <td style="color: black; text-align:center;">@p.nme_Professor</td>
-            <td style="color: black; text-align:center;">@p.matricula_Professor</td>
-            <td style="color: black; text-align:center;">@p.cpf_Professor</td>
-            <td style="color: black; text-align:center;">@retIdade(p.dta_NascProfessor)</td>
-            <td style="color: black; text-align:center;">@p.eml_Professor</td>
-            <td style="color: black; text-align:center;">@Html.ActionLink("Editar", "EditarProfessor", "Administrador", new { id = p.idProfessor }, null)</td>
-            <td style="color: black; text-align:center;">@Html.ActionLink("Inativar", "InativarProfessor", "Administrador", new { id = p.idProfessor }, null)</td>
-        </tr>
-            }
+                if (p.flg_Inativo == 0) {
+                    <tr class="table-secondary">
+                        <td style="color: black">
+                            @{cont++;
+                            }@cont
+                        </td>
+                        <td style="color: black; text-align:center;">@p.nme_Professor</td>
+                        <td style="color: black; text-align:center;">@p.matricula_Professor</td>
+                        <td style="color: black; text-align:center;">@p.cpf_Professor</td>
+                        <td style="color: black; text-align:center;">@retIdade(p.dta_NascProfessor)</td>
+                        <td style="color: black; text-align:center;">@p.eml_Professor</td>
+                        <td style="color: black; text-align:center;">@Html.ActionLink("Editar", "EditarProfessor", "Administrador", new { id = p.idProfessor }, null)</td>
+                        <td style="color: black; text-align:center;">@Html.ActionLink("Inativar", "InativarProfessor", "Administrador", new { id = p.idProfessor }, null)</td>
+                    </tr>
+                }
+             }
         </table>
     </div>
 </div>

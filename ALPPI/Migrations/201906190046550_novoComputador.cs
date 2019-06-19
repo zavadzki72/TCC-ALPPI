@@ -3,7 +3,7 @@ namespace ALPPI.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class bancov3 : DbMigration
+    public partial class novoComputador : DbMigration
     {
         public override void Up()
         {
@@ -145,6 +145,8 @@ namespace ALPPI.Migrations
                     {
                         idResposta = c.Int(nullable: false, identity: true),
                         des_Resposta = c.String(nullable: false),
+                        nota = c.Int(nullable: false),
+                        isEnviado = c.Boolean(nullable: false),
                         aluno_idAluno = c.Int(),
                         pergunta_idPergunta = c.Int(),
                     })

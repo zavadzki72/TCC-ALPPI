@@ -7,13 +7,13 @@ namespace ALPPI.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class bancov3 : IMigrationMetadata
+    public sealed partial class novoComputador : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(bancov3));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(novoComputador));
         
         string IMigrationMetadata.Id
         {
-            get { return "201903262101288_bancov3"; }
+            get { return "201906190046550_novoComputador"; }
         }
         
         string IMigrationMetadata.Source

@@ -71,6 +71,15 @@ namespace ALPPI.Migrations {
             estados.ForEach(e => context.estados.Add(e));
             context.SaveChanges();
 
+            var cities = new List<Cidade>{
+                new Cidade{nme_Cidade="Curitiba", estado = context.estados.Find(16)},
+                new Cidade{nme_Cidade="Colombo", estado = context.estados.Find(16)},
+                new Cidade{nme_Cidade="Campo Largo", estado = context.estados.Find(16)},
+                new Cidade{nme_Cidade="Pinhais", estado = context.estados.Find(16)}
+            };
+            cities.ForEach(c => context.cidades.Add(c));
+            context.SaveChanges();
+
             var materias = new List<Materia>{
                 new Materia{nme_Materia="Matematica", des_Materia="Materia da grade"},
                 new Materia{nme_Materia="Portugues", des_Materia="Materia da grade"},

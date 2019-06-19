@@ -1,4 +1,4 @@
-﻿@model ALPPI.Models.Professor
+﻿@model ALPPI.Models.Aluno
 
 @{
     DateTime[] dias = new DateTime[] { DateTime.Today.Date, DateTime.Today.Date.AddDays(1), DateTime.Today.Date.AddDays(2), DateTime.Today.Date.AddDays(3), DateTime.Today.Date.AddDays(4), DateTime.Today.Date.AddDays(5), DateTime.Today.Date.AddDays(6) };
@@ -33,59 +33,51 @@
 <head>
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <meta charset="utf-8" />
-    <title>Cadastro de Professores - ALPPI</title>
+    <title>Editar Aluno - ALPPI</title>
     <link rel="shortcut icon" href="~/Imagens/ICONE.ico" type="image/x-icon" />
 </head>
 <div class="LICAO CADASTRO">
-    @using (Html.BeginForm("EditarProfessor", "Administrador", FormMethod.Post))
+    @using (Html.BeginForm("EditarAluno", "Professor", FormMethod.Post))
     {
-        @Html.HiddenFor(Model => Model.idProfessor)
-        if (ViewBag.Sucesso != null)
-        {
-            if (ViewBag.Sucesso)
-            {
-                <div class="text-success"><center><p>Professor alterado!</p></center><br></div>
-            }
-        }
+        @Html.HiddenFor(Model => Model.idAluno)
         <center><p>@Html.ValidationSummary(true, null, new { @class = "text-danger" })</p></center><br>
         <div class="container">
             <div class="cards__block">
                 <div class="form-group">
-                    @Html.ValidationMessageFor(Model => Model.nme_Professor, null, new { @class = "text-danger" })
-                    @Html.LabelFor(Model => Model.nme_Professor, new { @for = "exampleInputEmail1" })
-                    @Html.TextBoxFor(Model => Model.nme_Professor, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Nome do Professor", @autocomplete = "off" })
-                    <center><small id="emailHelp" class="form-text text-muted">Digite o nome do Professor</small></center>
+                    @Html.ValidationMessageFor(Model => Model.nme_Aluno, null, new { @class = "text-danger" })
+                    @Html.LabelFor(Model => Model.nme_Aluno, new { @for = "exampleInputEmail1" })
+                    @Html.TextBoxFor(Model => Model.nme_Aluno, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Nome do Aluno", @autocomplete = "off" })
+                    <center><small id="emailHelp" class="form-text text-muted">Digite o nome do Aluno</small></center>
                 </div>
                 <div class="form-group">
-                    @Html.ValidationMessageFor(Model => Model.dta_NascProfessor, null, new { @class = "text-danger" })
-                    @Html.LabelFor(Model => Model.dta_NascProfessor, new { @for = "exampleInputEmail1", id = "exampleInputEmail1" })
-                    @Html.TextBox("data", "", new { @class = "date-picker form-control", @autocomplete = "off", id="idData" })
-                    <center><small id="emailHelp" class="form-text text-muted">Informe a Data de Nascimento do Professor</small></center>
+                    @Html.ValidationMessageFor(Model => Model.dta_NascAluno, null, new { @class = "text-danger" })
+                    @Html.LabelFor(Model => Model.dta_NascAluno, new { @for = "exampleInputEmail1", id = "exampleInputEmail1" })
+                    @Html.TextBox("data", "", new { @class = "date-picker form-control", @autocomplete = "off", id = "idData" })
+                    <center><small id="emailHelp" class="form-text text-muted">Informe a Data de Nascimento do Aluno</small></center>
                 </div>
             </div>
             <br>
             <div class="cards__block">
                 <div class="form-group">
-                    @Html.ValidationMessageFor(Model => Model.matricula_Professor, null, new { @class = "text-danger" })
-                    @Html.LabelFor(Model => Model.matricula_Professor, new { @for = "exampleInputEmail1" })
-                    @Html.TextBoxFor(Model => Model.matricula_Professor, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Matricula do Professor", @autocomplete = "off" })
-                    <center><small id="emailHelp" class="form-text text-muted">Digite a Matricula do Professor</small></center>
+                    @Html.ValidationMessageFor(Model => Model.matricula_Aluno, null, new { @class = "text-danger" })
+                    @Html.LabelFor(Model => Model.matricula_Aluno, new { @for = "exampleInputEmail1" })
+                    @Html.TextBoxFor(Model => Model.matricula_Aluno, new { @class = "form-control", id = "exampleInputEmail1", @placeholder = "Matricula do Aluno", @autocomplete = "off" })
+                    <center><small id="emailHelp" class="form-text text-muted">Digite a Matricula do Aluno</small></center>
                 </div>
                 <br>
                 <div class="form-group">
-                    @Html.ValidationMessageFor(Model => Model.cpf_Professor, null, new { @class = "text-danger" })
-                    @Html.LabelFor(Model => Model.cpf_Professor, new { @for = "exampleInputEmail1" })
-                    @Html.TextBoxFor(Model => Model.cpf_Professor, new { @class = "form-control", @data_val="false", id = "idCPF", @placeholder = "CPF do Professor", @autocomplete = "off" })
-                    <center><small id="emailHelp" class="form-text text-muted">Digite o CPF do professor</small></center>
+                    @Html.ValidationMessageFor(Model => Model.cpf_Aluno, null, new { @class = "text-danger" })
+                    @Html.LabelFor(Model => Model.cpf_Aluno, new { @for = "exampleInputEmail1" })
+                    @Html.TextBoxFor(Model => Model.cpf_Aluno, new { @class = "form-control", @data_val="false", id = "idCPF", @placeholder = "CPF do Aluno", @autocomplete = "off" })
+                    <center><small id="emailHelp" class="form-text text-muted">Digite o CPF do Aluno</small></center>
                 </div>
             </div>
         </div>
-        <br>
         @*SCRIPTS*@
         <script>$('#idCPF').mask('000.000.000-00', { placeholder: "___.___.___-__" });</script>
         <script>$('#idData').mask('00/00/0000', { placeholder: "__/__/____" });</script>
         @*--*@
-
+        <br>
         <center><button type="submit" onclick="$('#idCPF').unmask();" class="btn btn-outline-success">Pronto</button></center>
         <br><br><br><br><br><br>
     }

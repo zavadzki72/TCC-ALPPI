@@ -38,6 +38,16 @@ namespace ALPPI.DAO.Models {
             return false;
         }
 
+        public static Boolean excluirPergunta(Pergunta p) {
+            if(ctx.perguntas.FirstOrDefault(x => x.idPergunta==p.idPergunta)!=null) {
+                ctx.perguntas.Attach(p);
+                ctx.perguntas.Remove(p);
+                ctx.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
         public static Boolean addPergunta(Pergunta p) {
             if(buscarPergunta(p)==null) {
                 ctx.perguntas.Add(p);

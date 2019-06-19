@@ -21,16 +21,19 @@ namespace ALPPI.DAO.Models {
             try {
                 switch(atributo) {
                     case "CPF":
-                    long cpf = long.Parse(valor);
-                    return ctx.professores.FirstOrDefault(x => x.cpf_Professor == cpf);
+                        long cpf = long.Parse(valor);
+                        return ctx.professores.FirstOrDefault(x => x.cpf_Professor == cpf);
+                    case "id":
+                        int id = int.Parse(valor);
+                        return ctx.professores.FirstOrDefault(x => x.idProfessor == id);
                     case "nome":
-                    return ctx.professores.FirstOrDefault(x => x.nme_Professor.Equals(valor));
+                        return ctx.professores.FirstOrDefault(x => x.nme_Professor.Equals(valor));
                     case "matricula":
-                    long matricula = long.Parse(valor);
-                    return ctx.professores.FirstOrDefault(x => x.matricula_Professor == matricula);
+                        long matricula = long.Parse(valor);
+                        return ctx.professores.FirstOrDefault(x => x.matricula_Professor == matricula);
                     case "idSexo":
-                    int idSexo = int.Parse(valor);
-                    return ctx.professores.FirstOrDefault(x => x.sexo.idSexo == idSexo);
+                        int idSexo = int.Parse(valor);
+                        return ctx.professores.FirstOrDefault(x => x.sexo.idSexo == idSexo);
                 }
             } catch(Exception e) {
                 string erro = e.Message;

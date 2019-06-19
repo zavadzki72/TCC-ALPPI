@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ALPPI.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -15,11 +16,14 @@ namespace ALPPI.Models {
 
         [Required(ErrorMessage = "Esse campo não pode ser Vazio/Nullo")]
         [Display(Name = "Matricula")]
+        [RegularExpression(@"^[0-9]{11}$", ErrorMessage = "Esse campo deve ser preenchido somente com numeros, e precisa ter 11 Caracteres")]
         public long matricula_Professor { get; set; }
 
 
         [Required(ErrorMessage = "Esse campo não pode ser Vazio/Nullo")]
         [Display(Name = "CPF")]
+        [CustomValidationCPF(ErrorMessage = "CPF inválido")]
+        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Esse campo deve ser preenchido somente com numeros")]
         public long cpf_Professor { get; set; }
 
 

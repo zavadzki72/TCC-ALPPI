@@ -17,9 +17,7 @@ namespace ALPPI.Models {
 
         [Required(ErrorMessage = "Esse campo não pode ser Vazio/Nullo")]
         [Display(Name = "Matricula")]
-        [CustomValidationNumber(ErrorMessage = "Esse campo deve ser preenchido somente com numeros")]
-        [MinLength(11, ErrorMessage = "Esse campo tem que ter 11 digitos")]
-        [RegularExpression(@"^[0-9]*$", ErrorMessage = "Esse campo deve ser preenchido somente com numeros")]
+        [RegularExpression(@"^[0-9]{11}$", ErrorMessage = "Esse campo deve ser preenchido somente com numeros, e precisa ter 11 numeros")]
         public long matricula_Aluno { get; set; }
 
         [Required(ErrorMessage = "Esse campo não pode ser Vazio/Nullo")]

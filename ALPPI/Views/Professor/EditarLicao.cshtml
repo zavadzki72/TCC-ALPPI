@@ -43,7 +43,7 @@
                 <div class="form-group">
                     @Html.ValidationMessageFor(Model => Model.Dta_Conclusao_Licao,null,new { @class = "text-danger" })
                     @Html.LabelFor(Model => Model.Dta_Conclusao_Licao,new { @for = "exampleInputEmail1",id = "exampleInputEmail1" })
-                    @Html.TextBox("data","",new { @class = "date-picker form-control" })
+                    @Html.TextBox("data","",new { @class = "date-picker form-control", @autocomplete="off" })
                     <center><small id="emailHelp" class="form-text text-muted">Informe o Prazo Maximo de Entrega</small></center>
                 </div>
             </div>
